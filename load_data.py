@@ -6,7 +6,13 @@ from tqdm import tqdm
 conllulex = ['id', 'form', 'lemma', 'upos', 'xpos', 'feats', 'head','deprel', 'deps',
              'misc', 'smwe', 'lexcat', 'lexlemma', 'ss', 'ss2', 'wmwe', 'wcat', 'wlemma', 'lextag']
 
-def tokenize_and_align(file: str, tokenizer: AutoTokenizer, add_space: bool=True, hide_non_adp: bool=True):
+def tokenize_and_align(
+    file: str,
+    tokenizer: AutoTokenizer,
+    add_space: bool=True,
+    hide_non_adp: bool=True,
+    o_to_b: bool=True):
+    
     print(file)
     res = []
     with open(file, 'r') as fin:
@@ -26,6 +32,8 @@ def tokenize_and_align(file: str, tokenizer: AutoTokenizer, add_space: bool=True
                 if hide_non_adp:
                     if '-P-' not in token['lextag']:
                         token['lextag'] = 'O'
+                if o_to_b:
+                    token['lextag'] = token['lextag'].replace('O-', 'B-')
 
                 tok = None
                 if i == 0 or not add_space: tok = tokenizer.encode(token['form'])

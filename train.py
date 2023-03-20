@@ -38,11 +38,21 @@ def load_data(file: str, tokenizer: AutoTokenizer):
     print(f"{len(label_to_id)} labels.")
     return res2, label_to_id, id_to_label
 
-def compute_metrics(p):
+def compute_metrics(p, id_to_label):
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
 
-    results = seqeval.compute(predictions=predictions, references=labels)
+    true_predictions = [
+        [id_to_label[p] for (p, l) in zip(prediction, label) if l != -100]
+        for prediction, label in zip(predictions, labels)
+    ]
+
+    true_labels = [
+        [id_to_label[l] for (p, l) in zip(prediction, label) if l != -100]
+        for prediction, label in zip(predictions, labels)
+    ]
+
+    results = seqeval.compute(predictions=true_predictions, references=true_labels)
     return {
         "precision": results["overall_precision"],
         "recall": results["overall_recall"],
@@ -69,18 +79,18 @@ def train(model_name: str, file: str):
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
-        load_best_model_at_end=True,
-        push_to_hub=True,
+        load_best_model_at_end=False,
+        push_to_hub=False,
     )
 
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=data[20:],
-        eval_dataset=data[:20],
+        train_dataset=data[:10],
+        eval_dataset=data[:10],
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_metrics,
+        compute_metrics=lambda x: compute_metrics(x, id_to_label),
     )
 
     trainer.train()
