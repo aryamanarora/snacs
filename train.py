@@ -2,6 +2,7 @@ from transformers import AutoModelForTokenClassification, TrainingArguments, Tra
 from load_data import tokenize_and_align
 import numpy as np
 import evaluate
+import random
 
 seqeval = evaluate.load("seqeval")
 
@@ -36,6 +37,8 @@ def load_data(file: str, tokenizer: AutoTokenizer):
         })
     
     print(f"{len(label_to_id)} labels.")
+    random.shuffle(res2)
+    
     return res2, label_to_id, id_to_label
 
 def compute_metrics(p, id_to_label):
@@ -86,8 +89,8 @@ def train(model_name: str, file: str):
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=data[:10],
-        eval_dataset=data[:10],
+        train_dataset=data[len(data) // 5:],
+        eval_dataset=data[:len(data) // 5],
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=lambda x: compute_metrics(x, id_to_label),
