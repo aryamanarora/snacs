@@ -3,6 +3,7 @@ from load_data import tokenize_and_align
 import numpy as np
 import evaluate
 import random
+import argparse
 
 seqeval = evaluate.load("seqeval")
 
@@ -63,7 +64,7 @@ def compute_metrics(p, id_to_label):
         "accuracy": results["overall_accuracy"],
     }
 
-def train(model_name: str, file: str):
+def train(model_name: str, file: str, learning_rate: float, batch_size: int, epochs: int, weight_decay: float):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label = load_data(file, tokenizer)
 
@@ -75,11 +76,11 @@ def train(model_name: str, file: str):
     
     training_args = TrainingArguments(
         output_dir="models",
-        learning_rate=2e-5,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
-        num_train_epochs=10,
-        weight_decay=0.01,
+        learning_rate=learning_rate,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
+        num_train_epochs=epochs,
+        weight_decay=weight_decay,
         evaluation_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=False,
@@ -99,7 +100,17 @@ def train(model_name: str, file: str):
     trainer.train()
 
 def main():
-    train("bert-base-uncased", "data/en-lp.conllulex")
+    # argparse to get model name and data file, learning rate, batch size, epochs, weight decay
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_name", type=str, default="bert-base-cased")
+    parser.add_argument("--file", type=str, default="data/en-lp.conllulex")
+    parser.add_argument("--learning_rate", type=float, default=2e-5)
+    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--epochs", type=int, default=10)
+    parser.add_argument("--weight_decay", type=float, default=0.01)
+    args = parser.parse_args()
+
+    train(**vars(args))
 
 if __name__ == "__main__":
     main()
