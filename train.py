@@ -4,6 +4,9 @@ import numpy as np
 import evaluate
 import random
 import argparse
+import os
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 seqeval = evaluate.load("seqeval")
 
@@ -102,7 +105,7 @@ def train(model_name: str, file: str, learning_rate: float, batch_size: int, epo
 def main():
     # argparse to get model name and data file, learning rate, batch size, epochs, weight decay
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str, default="bert-base-cased")
+    parser.add_argument("--model_name", type=str, default="bert-base-uncased")
     parser.add_argument("--file", type=str, default="data/en-lp.conllulex")
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--batch_size", type=int, default=16)
