@@ -11,6 +11,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 seqeval = evaluate.load("seqeval")
 
 def load_data(file: str, tokenizer: AutoTokenizer):
+    """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
     # make label-id mapping
@@ -46,6 +47,7 @@ def load_data(file: str, tokenizer: AutoTokenizer):
     return res2, label_to_id, id_to_label
 
 def compute_metrics(p, id_to_label):
+    """Compute metrics for evaluation."""
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
 
@@ -67,16 +69,33 @@ def compute_metrics(p, id_to_label):
         "accuracy": results["overall_accuracy"],
     }
 
-def train(model_name: str, file: str, learning_rate: float, batch_size: int, epochs: int, weight_decay: float):
+def train(
+    model_name: str,
+    file: str,
+    learning_rate: float,
+    batch_size: int,
+    epochs: int,
+    weight_decay: float,
+    freeze: bool):
+    """Train model."""
+
+    # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label = load_data(file, tokenizer)
 
+    # load model
     model = AutoModelForTokenClassification.from_pretrained(
         model_name, num_labels=len(label_to_id), id2label=id_to_label, label2id=label_to_id
     )
 
+    # freeze layers
+    if freeze:
+        for name, param in model.named_parameters():
+            if 'classifier' not in name:
+                param.requires_grad = False
+
+    # set up trainer
     data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
-    
     training_args = TrainingArguments(
         output_dir="models",
         learning_rate=learning_rate,
@@ -100,10 +119,10 @@ def train(model_name: str, file: str, learning_rate: float, batch_size: int, epo
         compute_metrics=lambda x: compute_metrics(x, id_to_label),
     )
 
+    # train
     trainer.train()
 
 def main():
-    # argparse to get model name and data file, learning rate, batch size, epochs, weight decay
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
     parser.add_argument("--file", type=str, default="data/en-lp.conllulex")
@@ -111,6 +130,7 @@ def main():
     parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--weight_decay", type=float, default=0.01)
+    parser.add_argument("--freeze", action="store_true")
     args = parser.parse_args()
 
     train(**vars(args))

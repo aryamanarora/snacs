@@ -26,14 +26,25 @@ def tokenize_and_align(
             labels = []
             work = True
 
+            smwe_tags = {}
+
             for i, token in enumerate(sent):
                 if not isinstance(token['id'], int): continue
 
-                if hide_non_adp:
-                    if '-P-' not in token['lextag']:
-                        token['lextag'] = 'O'
-                if o_to_b:
-                    token['lextag'] = token['lextag'].replace('O-', 'B-')
+                if token['smwe'] != '_':
+                    smwe, pos = token['smwe'].split(':')
+                    if smwe not in smwe_tags:
+                        if token['ss'] != '_':
+                            smwe_tags[smwe] = token['ss'] + '-' + token['ss2']
+                            token['lextag'] = 'B-' + smwe_tags[smwe]
+                        else:
+                            token['lextag'] = 'O'
+                    else:
+                        token['lextag'] = 'I-' + smwe_tags[smwe]
+                elif token['ss'] != '_':
+                    token['lextag'] = 'B-' + token['ss'] + '-' + token['ss2']
+                else:
+                    token['lextag'] = 'O'
 
                 tok = None
                 if i == 0 or not add_space: tok = tokenizer.encode(token['form'])
@@ -48,7 +59,10 @@ def tokenize_and_align(
             if work:
                 res.append([tokens, mask, labels])
 
-    print(res[0])
+    for i in res:
+        for j in range(len(i[0])):
+            print(f"{tokenizer.decode(i[0][j]):<15} {i[1][j]:<10} {i[2][j]:<30}")
+        input()
     if failed != 0:
         print(f"Failed to parse {failed} sentences, did {len(res)}.")
     else:
