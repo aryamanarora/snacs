@@ -11,7 +11,9 @@ def tokenize_and_align(
     tokenizer: AutoTokenizer,
     add_space: bool=True,
     hide_non_adp: bool=True,
-    o_to_b: bool=True):
+    o_to_b: bool=True,
+    verbose: bool=False
+):
     
     print(file)
     res = []
@@ -64,11 +66,12 @@ def tokenize_and_align(
             if work:
                 res.append([tokens, mask, labels])
 
-    # for i in res:
-    #     for j in range(len(i[0])):
-    #         print(f"{tokenizer.decode(i[0][j]):<15} {i[1][j]:<10} {i[2][j]:<30}")
-    #     input()
-    
+    if verbose:
+        for tokens, mask, labels in res:
+            for j in range(len(tokens)):
+                print(f"{tokens[j]:<10} {tokenizer.decode(tokens[j]):<15} {mask[j]:<10} {labels[j]:<30}")
+            input()
+
     if failed != 0:
         print(f"Failed to parse {failed} sentences, did {len(res)}.")
     else:
@@ -81,7 +84,7 @@ def main():
     for file in glob.glob("data/*.conllulex"):
         print(file)
         tokenizer = AutoTokenizer.from_pretrained("gpt2")
-        tokenize_and_align(file, tokenizer)
+        tokenize_and_align(file, tokenizer, verbose=True)
 
 if __name__ == "__main__":
     main()
