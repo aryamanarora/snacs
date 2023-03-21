@@ -4,10 +4,13 @@ Models for parsing SNACS datasets. See [Schneider et al. (2018)](https://aclanth
 
 ## Results
 
+See model finetuning runs on [Weights & Biases](https://wandb.ai/aryamanarora/huggingface).
+
 | Model | W&B | Dataset | Precision | Recall | F1 |
 | --- | --- | --- | --- | --- | --- |
-| `bert-base-cased` + Linear | `dauntless-sun-13` | `en-streusle` | 63.3 | 65.2 | 64.3 |
+| `bert-base-cased` + Linear | `polished-plasma-24` | `en-streusle` | 70.9 | 72.3 | 71.6 |
 | `roberta-base` + Linear | `feasible-dragon-20` | `en-streusle` | 77.0 | 79.6 | **78.2** |
 | Liu et al. (2021) | | `en-streusle` | | | 70.9 |
 | Schneider et al. (2018) | | `en-streusle` | | | 55.7 |
-| `bert-base-cased` + Linear | `neat-wood-17` | `en-lp` | 41.7 | 41.9 | 41.8 |
+| `bert-base-cased` + Linear | `confused-elevator-22` | `en-lp` | 67.4 | 70.1 | 68.7 |
+| `roberta-base` + Linear | `pleasant-salad-21` | `en-lp` | 66.8 | 69.4 | 68.1 |
