@@ -31,6 +31,11 @@ def tokenize_and_align(
             for i, token in enumerate(sent):
                 if not isinstance(token['id'], int): continue
 
+                if hide_non_adp:
+                    if not token['ss'].startswith('p.'):
+                        token['ss'] = '_'
+                        token['ss2'] = '_'
+
                 if token['smwe'] != '_':
                     smwe, pos = token['smwe'].split(':')
                     if smwe not in smwe_tags:
@@ -59,10 +64,11 @@ def tokenize_and_align(
             if work:
                 res.append([tokens, mask, labels])
 
-    for i in res:
-        for j in range(len(i[0])):
-            print(f"{tokenizer.decode(i[0][j]):<15} {i[1][j]:<10} {i[2][j]:<30}")
-        input()
+    # for i in res:
+    #     for j in range(len(i[0])):
+    #         print(f"{tokenizer.decode(i[0][j]):<15} {i[1][j]:<10} {i[2][j]:<30}")
+    #     input()
+    
     if failed != 0:
         print(f"Failed to parse {failed} sentences, did {len(res)}.")
     else:
