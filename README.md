@@ -14,3 +14,4 @@ See model finetuning runs on [Weights & Biases](https://wandb.ai/aryamanarora/hu
 | Schneider et al. (2018) | | `en-streusle` | | | 55.7 |
 | `bert-base-cased` + Linear | `confused-elevator-22` | `en-lp` | 67.4 | 70.1 | 68.7 |
 | `roberta-base` + Linear | `pleasant-salad-21` | `en-lp` | 66.8 | 69.4 | 68.1 |
+| `roberta-base` + Linear | `youthful-frog-30` | `en-pastrie` | 53.9 | 57.7 | 55.7 |
