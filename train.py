@@ -81,7 +81,7 @@ def train(
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    data, label_to_id, id_to_label = load_data(file, tokenizer)
+    data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
@@ -125,7 +125,7 @@ def train(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
-    parser.add_argument("--file", type=str, default="data/en-lp.conllulex")
+    parser.add_argument("--file", type=str, default="en-lp.conllulex")
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument("--epochs", type=int, default=10)
