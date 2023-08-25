@@ -21,6 +21,7 @@ def tokenize_and_align(
 
         failed = 0
         for sent in tqdm(conllu.parse_incr(fin, fields=conllulex)):
+            print(sent.metadata['sent_id'])
             text = sent.metadata['text']
 
             tokens = []
@@ -31,13 +32,17 @@ def tokenize_and_align(
             smwe_tags = {}
 
             for i, token in enumerate(sent):
+
+                # ignore subword tokens (is this a good idea?)
                 if not isinstance(token['id'], int): continue
 
+                # ignore non-adposition labels (e.g. in streusle, which has noun/verb labels)
                 if hide_non_adp:
                     if not token['ss'].startswith('p.'):
                         token['ss'] = '_'
                         token['ss2'] = '_'
 
+                # generate BIO tag
                 if token['smwe'] != '_':
                     smwe, pos = token['smwe'].split(':')
                     if smwe not in smwe_tags:
@@ -53,14 +58,14 @@ def tokenize_and_align(
                 else:
                     token['lextag'] = 'O'
 
+                # tokenize using LM tokenizer
                 tok = None
                 if i == 0 or not add_space: tok = tokenizer.encode(token['form'])
                 else: tok = tokenizer.encode(' ' + token['form'])
 
-                labels.append(token['lextag'])
-                labels.extend(['None' for _ in range(len(tok) - 1)])
-                mask.append(1)
-                mask.extend([0 for _ in range(len(tok) - 1)])
+                # add tag + 'None' for each remaining subword token
+                labels.extend([token['lextag']] + ['None' for _ in range(len(tok) - 1)])
+                mask.extend([1] + [0 for _ in range(len(tok) - 1)])
                 tokens.extend(tok)
             
             if work:
