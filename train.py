@@ -10,13 +10,16 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 seqeval = evaluate.load("seqeval")
 
-def load_data(file: str, tokenizer: AutoTokenizer):
+def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None):
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
-    # make label-id mapping
-    label_to_id = {"None": -100}
-    id_to_label = {-100: "None"}
+    #if label-id mapping exists from previous language file, can use that
+    # make label-id mapping if doesn't exist
+    if not id_to_label and not label_to_id:
+        label_to_id = {"None": -100}
+        id_to_label = {-100: "None"}
+
     for sent, mask, label in res:
         for i in range(len(sent)):
             if mask[i]:
@@ -76,12 +79,16 @@ def train(
     batch_size: int,
     epochs: int,
     weight_decay: float,
-    freeze: bool):
+    freeze: bool,
+    test_file: str):
     """Train model."""
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
+
+    if test_file:
+        test_data, _, _ = load_data(f"data/{test_file}")
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
@@ -109,6 +116,15 @@ def train(
         push_to_hub=False,
     )
 
+    #split the file into train and eval if not separate eval file
+    if not test_file:
+        train_dataset = data[len(data) // 5:]
+        eval_dataset = data[:len(data) // 5]
+    
+    else:
+        train_dataset = data
+        eval_dataset = test_data
+
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -131,6 +147,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--freeze", action="store_true")
+    parser.add_argument("--test_file", type=str, default=None, help="If you want to test on a different file than training. Otherwise, splits the main file into train/eval splits.")
     args = parser.parse_args()
 
     train(**vars(args))
