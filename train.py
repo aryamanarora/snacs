@@ -88,7 +88,7 @@ def train(
     data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
 
     if test_file:
-        test_data, _, _ = load_data(f"data/{test_file}")
+        test_data, _, _ = load_data(f"data/{test_file}", tokenizer)
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
