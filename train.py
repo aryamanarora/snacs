@@ -107,7 +107,7 @@ class MyTrainer(Trainer):
 
         labels = labels.view(-1) #batch_size * sequence length
 
-        loss_fn = CrossEntropyLoss(weight=weights)
+        loss_fn = CrossEntropyLoss()
         loss = loss_fn(logits, labels)
 
         if return_outputs:
