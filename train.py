@@ -5,6 +5,7 @@ import evaluate
 import random
 import argparse
 import os
+from torch.nn import CrossEntropyLoss
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -72,6 +73,18 @@ def compute_metrics(p, id_to_label):
         "accuracy": results["overall_accuracy"],
     }
 
+
+#Custom trainer which is used for custom weighted loss function
+class MyTrainer(Trainer):
+    def compute_loss(self, model, inputs):
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+        logits = outputs[0]
+        return my_custom_loss(logits, labels)
+
+
+
+#model training
 def train(
     model_name: str,
     file: str,
