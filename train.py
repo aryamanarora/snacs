@@ -85,7 +85,8 @@ class MyTrainer(Trainer):
 
 
         labels = inputs.pop("labels")
-        outputs = model(**inputs, labels=labels)
+
+        outputs = model(**inputs)
 
         logits = outputs.logits  # Assuming your model's output is named 'logits'
 
@@ -95,12 +96,12 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
-        weights[1] = .25
-
-        weights[0] = 0.1
-
-
-        weights = torch.tensor(weights).to("cuda")
+        # weights[1] = .25
+        #
+        # weights[0] = 0.1
+        #
+        #
+        # weights = torch.tensor(weights).to("cuda")
 
 
 
