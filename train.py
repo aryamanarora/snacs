@@ -93,8 +93,13 @@ class MyTrainer(Trainer):
         print(outputs.logits.shape, file=sys.stderr)
         logits = outputs[0]  # Assuming your model's output is named 'logits'
 
-        print(len(labels[0]), labels[0], file=sys.stderr)
-        print(len(logits[0]), logits[0][0], len(logits),file=sys.stderr)
+        # print(len(labels[0]), labels[0], file=sys.stderr)
+        # print(len(logits[0]), logits[0][0], len(logits),file=sys.stderr)
+
+        logits = logits.view(-1, logits.shape[-1])  # Shape: (batch_size * sequence_length, num_labels)
+        labels = labels.view(-1)
+
+        print(logits.shape, labels.shape, file=sys.stderr)
 
         # Using torch.nn.CrossEntropyLoss as the custom loss
         loss_fn = CrossEntropyLoss()
