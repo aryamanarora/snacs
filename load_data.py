@@ -21,7 +21,6 @@ def tokenize_and_align(
 
         failed = 0
         for sent in tqdm(conllu.parse_incr(fin, fields=conllulex)):
-            # print(sent.metadata["sent_id"])
             text = sent.metadata['text']
 
             tokens = []
