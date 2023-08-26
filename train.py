@@ -49,7 +49,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     print(f"{len(label_to_id)} labels.")
     random.shuffle(res2)
 
-    print(res2[0]["input_ids"], res2[0]["labels"], file=sys.stderr)
+    print(res2[0]["labels"], file=sys.stderr)
     
     return res2, label_to_id, id_to_label
 
@@ -89,7 +89,8 @@ class MyTrainer(Trainer):
     def compute_loss(self, model, inputs):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
-        logits = outputs[1]  # Assuming your model's output is named 'logits'
+        print(outputs, file=sys.stderr)
+        logits = outputs[0]  # Assuming your model's output is named 'logits'
 
         print(len(labels[0]), labels[0], file=sys.stderr)
         print(len(logits[0]), logits[0][0], len(logits),file=sys.stderr)
