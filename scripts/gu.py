@@ -36,7 +36,7 @@ for i in range(1, 28):
         for sent_id, sent in enumerate(sents):
             # print(sent.text, [x[0] for x in sents[sent_id]])
             res += f'\n# sent_id = lp_gu_{i}_{sent_id}'
-            sent = [x[1] for x in sent]
+            sent = [x[1].replace('\n', '') for x in sent]
             res += f'\n# text = {" ".join(sent)}'
             for word_id, word in enumerate(sent):
                 # generate row for each word, first normal CONLLU stuff
