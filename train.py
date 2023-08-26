@@ -87,10 +87,10 @@ class MyTrainer(Trainer):
     def compute_loss(self, model, inputs):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
-        logits = outputs.logits  # Assuming your model's output is named 'logits'
+        logits = outputs[0]  # Assuming your model's output is named 'logits'
 
-        print(labels, len(labels),file=sys.stderr)
-        print(logits, len(logits),file=sys.stderr)
+        print(labels[0],file=sys.stderr)
+        print(logits[0], len(logits),file=sys.stderr)
 
         # Using torch.nn.CrossEntropyLoss as the custom loss
         loss_fn = CrossEntropyLoss()
