@@ -96,18 +96,20 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
-        # weights[1] = .25
-        #
-        # weights[0] = 0.1
-        #
-        #
+        weights[1] = .1
+
+        weights[0] = 0.01
+
+
+        weights = [float(w) for w  in weights]
+
         weights = torch.tensor(weights).to("cuda")
 
 
 
         labels = labels.view(-1) #batch_size * sequence length
 
-        loss_fn = CrossEntropyLoss()
+        loss_fn = CrossEntropyLoss(weight=weights)
         loss = loss_fn(logits, labels)
 
         if return_outputs:
