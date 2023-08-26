@@ -89,7 +89,7 @@ class MyTrainer(Trainer):
         logits = outputs.logits  # Assuming your model's output is named 'logits'
 
         # Using torch.nn.CrossEntropyLoss as the custom loss
-        loss_fn = nn.CrossEntropyLoss()
+        loss_fn = CrossEntropyLoss()
         loss = loss_fn(logits, labels)
 
         return loss
