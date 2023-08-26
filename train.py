@@ -48,6 +48,8 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     
     print(f"{len(label_to_id)} labels.")
     random.shuffle(res2)
+
+    print(len(res2[0]["input_ids"]), len(res2[0]["labels"]), file=sys.stderr)
     
     return res2, label_to_id, id_to_label
 
