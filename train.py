@@ -96,7 +96,7 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
-        weights[1] = 0.025
+        weights[1] = 0.01
 
         weights[0] = 0.0001
 
