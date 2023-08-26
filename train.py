@@ -91,12 +91,14 @@ class MyTrainer(Trainer):
         outputs = model(**inputs, labels=labels)
         print(outputs, file=sys.stderr)
         print(outputs.logits.shape, file=sys.stderr)
-        logits = outputs[0]  # Assuming your model's output is named 'logits'
+        logits = outputs.logits  # Assuming your model's output is named 'logits'
+
+        logits = logits.view(-1, logits.shape[-1])
 
         # print(len(labels[0]), labels[0], file=sys.stderr)
         # print(len(logits[0]), logits[0][0], len(logits),file=sys.stderr)
 
-        logits = logits.view(-1, logits.shape[-1])  # Shape: (batch_size * sequence_length, num_labels)
+        # logits = logits.view(-1, logits.shape[-1])  # Shape: (batch_size * sequence_length, num_labels)
         labels = labels.view(-1)
 
         print(logits.shape, labels.shape, file=sys.stderr)
