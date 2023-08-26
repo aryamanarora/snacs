@@ -93,7 +93,12 @@ class MyTrainer(Trainer):
         loss_fn = CrossEntropyLoss()
         loss = loss_fn(logits, labels)
 
-        return loss
+        if return_outputs:
+            return loss, outputs
+        else:
+            return loss
+
+
 
 
 
