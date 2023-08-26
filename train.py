@@ -76,12 +76,23 @@ def compute_metrics(p, id_to_label):
 
 #Custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
+    # def compute_loss(self, model, inputs):
+    #     labels = inputs.pop("labels")
+    #     outputs = model(**inputs)
+    #     logits = outputs[0]
+    #     my_custom_loss = CrossEntropyLoss()
+    #     return my_custom_loss(logits, labels)
+
     def compute_loss(self, model, inputs):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
-        logits = outputs[0]
-        my_custom_loss = CrossEntropyLoss()
-        return my_custom_loss(logits, labels)
+        logits = outputs.logits  # Assuming your model's output is named 'logits'
+
+        # Using torch.nn.CrossEntropyLoss as the custom loss
+        loss_fn = nn.CrossEntropyLoss()
+        loss = loss_fn(logits, labels)
+
+        return loss
 
 
 
