@@ -90,7 +90,7 @@ class MyTrainer(Trainer):
         labels = inputs.pop("labels")
         outputs = model(**inputs, labels=labels)
         print(outputs, file=sys.stderr)
-        print(outputs.shape, file=sys.stderr)
+        print(outputs.logits.shape, file=sys.stderr)
         logits = outputs[0]  # Assuming your model's output is named 'logits'
 
         print(len(labels[0]), labels[0], file=sys.stderr)
