@@ -91,11 +91,14 @@ class MyTrainer(Trainer):
         logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
 
         num_labels = logits.size(1)
-        print("NUM labs", num_labels)
+
+        weights = [1] * num_labels
+
+        weights[1] = .1
 
         labels = labels.view(-1) #batch_size * sequence length
 
-        loss_fn = CrossEntropyLoss()
+        loss_fn = CrossEntropyLoss(weight=weights)
         loss = loss_fn(logits, labels)
 
         if return_outputs:
