@@ -80,7 +80,7 @@ def compute_metrics(p, id_to_label):
 #Custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
 
-    def compute_loss(self, model, inputs):
+    def compute_loss(self, model, inputs, return_outputs=False):
         labels = inputs.pop("labels")
         outputs = model(**inputs, labels=labels)
 
