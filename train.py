@@ -49,7 +49,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     print(f"{len(label_to_id)} labels.")
     random.shuffle(res2)
 
-    print(res2[0]["labels"], file=sys.stderr)
+    # print(res2[0]["labels"], file=sys.stderr)
     
     return res2, label_to_id, id_to_label
 
@@ -79,31 +79,17 @@ def compute_metrics(p, id_to_label):
 
 #Custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
-    # def compute_loss(self, model, inputs):
-    #     labels = inputs.pop("labels")
-    #     outputs = model(**inputs)
-    #     logits = outputs[0]
-    #     my_custom_loss = CrossEntropyLoss()
-    #     return my_custom_loss(logits, labels)
 
     def compute_loss(self, model, inputs):
         labels = inputs.pop("labels")
         outputs = model(**inputs, labels=labels)
-        print(outputs, file=sys.stderr)
-        print(outputs.logits.shape, file=sys.stderr)
+
         logits = outputs.logits  # Assuming your model's output is named 'logits'
 
-        logits = logits.view(-1, logits.shape[-1])
+        logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
 
-        # print(len(labels[0]), labels[0], file=sys.stderr)
-        # print(len(logits[0]), logits[0][0], len(logits),file=sys.stderr)
+        labels = labels.view(-1) #batch_size * sequence length
 
-        # logits = logits.view(-1, logits.shape[-1])  # Shape: (batch_size * sequence_length, num_labels)
-        labels = labels.view(-1)
-
-        print(logits.shape, labels.shape, file=sys.stderr)
-
-        # Using torch.nn.CrossEntropyLoss as the custom loss
         loss_fn = CrossEntropyLoss()
         loss = loss_fn(logits, labels)
 
