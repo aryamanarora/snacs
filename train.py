@@ -96,9 +96,9 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
-        weights[1] = 0.007
+        weights[1] = 0.5
 
-        weights[0] = 0.001
+        weights[0] = 0.0001
 
 
         weights = [float(w) for w  in weights]
