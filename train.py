@@ -6,6 +6,7 @@ import random
 import argparse
 import os
 from torch.nn import CrossEntropyLoss
+import torch
 import sys
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -95,6 +96,8 @@ class MyTrainer(Trainer):
         weights = [1] * num_labels
 
         weights[1] = .1
+
+        weights = torch.tensor(weights)
 
         labels = labels.view(-1) #batch_size * sequence length
 
