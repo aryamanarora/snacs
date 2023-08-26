@@ -81,12 +81,17 @@ def compute_metrics(p, id_to_label):
 class MyTrainer(Trainer):
 
     def compute_loss(self, model, inputs, return_outputs=False):
+
+
         labels = inputs.pop("labels")
         outputs = model(**inputs, labels=labels)
 
         logits = outputs.logits  # Assuming your model's output is named 'logits'
 
         logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
+
+        num_labels = logits.size(1)
+        print("NUM labs", num_labels)
 
         labels = labels.view(-1) #batch_size * sequence length
 
