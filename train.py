@@ -80,6 +80,7 @@ class MyTrainer(Trainer):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
         logits = outputs[0]
+        my_custom_loss = CrossEntropyLoss()
         return my_custom_loss(logits, labels)
 
 
@@ -138,7 +139,7 @@ def train(
         train_dataset = data
         eval_dataset = test_data
 
-    trainer = Trainer(
+    trainer = MyTrainer(
         model=model,
         args=training_args,
         train_dataset=data[len(data) // 5:],
