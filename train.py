@@ -88,7 +88,7 @@ class MyTrainer(Trainer):
 
     def compute_loss(self, model, inputs):
         labels = inputs.pop("labels")
-        outputs = model(**inputs)
+        outputs = model(**inputs, labels=labels)
         print(outputs, file=sys.stderr)
         logits = outputs[0]  # Assuming your model's output is named 'logits'
 
