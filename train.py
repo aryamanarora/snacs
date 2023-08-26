@@ -101,7 +101,7 @@ class MyTrainer(Trainer):
         # weights[0] = 0.1
         #
         #
-        # weights = torch.tensor(weights).to("cuda")
+        weights = torch.tensor(weights).to("cuda")
 
 
 
