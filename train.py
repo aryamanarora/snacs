@@ -6,6 +6,7 @@ import random
 import argparse
 import os
 from torch.nn import CrossEntropyLoss
+import sys
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -119,6 +120,8 @@ def train(
     model = AutoModelForTokenClassification.from_pretrained(
         model_name, num_labels=len(label_to_id), id2label=id_to_label, label2id=label_to_id
     )
+
+    print("NUM labels", len(label_to_id), file=sys.stderr)
 
     # freeze layers
     if freeze:
