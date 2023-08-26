@@ -97,7 +97,10 @@ class MyTrainer(Trainer):
 
         weights[1] = .1
 
-        weights = torch.tensor(weights)
+
+        weights = torch.tensor(weights).to("cuda")
+
+
 
         labels = labels.view(-1) #batch_size * sequence length
 
