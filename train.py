@@ -5,18 +5,24 @@ import evaluate
 import random
 import argparse
 import os
+from torch.nn import CrossEntropyLoss
+import torch
+import sys
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 seqeval = evaluate.load("seqeval")
 
-def load_data(file: str, tokenizer: AutoTokenizer):
+def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None):
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
-    # make label-id mapping
-    label_to_id = {"None": -100}
-    id_to_label = {-100: "None"}
+    #if label-id mapping exists from previous language file, can use that
+    # make label-id mapping if doesn't exist
+    if not id_to_label and not label_to_id:
+        label_to_id = {"None": -100}
+        id_to_label = {-100: "None"}
+
     for sent, mask, label in res:
         for i in range(len(sent)):
             if mask[i]:
@@ -43,6 +49,8 @@ def load_data(file: str, tokenizer: AutoTokenizer):
     
     print(f"{len(label_to_id)} labels.")
     random.shuffle(res2)
+
+    print(label_to_id)
     
     return res2, label_to_id, id_to_label
 
@@ -69,6 +77,54 @@ def compute_metrics(p, id_to_label):
         "accuracy": results["overall_accuracy"],
     }
 
+
+#Custom trainer which is used for custom weighted loss function
+class MyTrainer(Trainer):
+
+    def compute_loss(self, model, inputs, return_outputs=False):
+        """
+        custom loss function which overwrites the standard compute_loss function. We use this to implement the weighted CE loss
+        """
+
+        labels = inputs.pop("labels")
+
+        outputs = model(**inputs)
+
+        logits = outputs.logits
+
+        logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
+
+        num_labels = logits.size(1)
+
+        #TO DO: compute weights based on frequency of relative labels in input
+        #below is just some random experiments with changing the weights to see if there was significant effect
+
+        weights = [1] * num_labels
+        weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
+        weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
+
+
+        weights = [float(w) for w  in weights]
+
+        weights = torch.tensor(weights).to("cuda")
+
+
+
+        labels = labels.view(-1) #batch_size * sequence length
+
+        loss_fn = CrossEntropyLoss(weight=weights)
+        loss = loss_fn(logits, labels)
+
+        if return_outputs:
+            return loss, outputs
+        else:
+            return loss
+
+
+
+
+
+#model training
 def train(
     model_name: str,
     file: str,
@@ -76,17 +132,23 @@ def train(
     batch_size: int,
     epochs: int,
     weight_decay: float,
-    freeze: bool):
+    freeze: bool,
+    test_file: str):
     """Train model."""
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
 
+    if test_file:
+        test_data, _, _ = load_data(f"data/{test_file}", tokenizer)
+
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
         model_name, num_labels=len(label_to_id), id2label=id_to_label, label2id=label_to_id
     )
+
+    print("NUM labels", len(label_to_id), file=sys.stderr)
 
     # freeze layers
     if freeze:
@@ -109,7 +171,16 @@ def train(
         push_to_hub=False,
     )
 
-    trainer = Trainer(
+    #split the file into train and eval if not separate eval file
+    if not test_file:
+        train_dataset = data[len(data) // 5:]
+        eval_dataset = data[:len(data) // 5]
+    
+    else:
+        train_dataset = data
+        eval_dataset = test_data
+
+    trainer = MyTrainer(
         model=model,
         args=training_args,
         train_dataset=data[len(data) // 5:],
@@ -131,6 +202,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--freeze", action="store_true")
+    parser.add_argument("--test_file", type=str, default=None, help="If you want to test on a different file than training. Otherwise, splits the main file into train/eval splits.")
     args = parser.parse_args()
 
     train(**vars(args))
