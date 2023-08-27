@@ -82,23 +82,26 @@ def compute_metrics(p, id_to_label):
 class MyTrainer(Trainer):
 
     def compute_loss(self, model, inputs, return_outputs=False):
-
+        """
+        custom loss function which overwrites the standard compute_loss function. We use this to implement the weighted CE loss
+        """
 
         labels = inputs.pop("labels")
 
         outputs = model(**inputs)
 
-        logits = outputs.logits  # Assuming your model's output is named 'logits'
+        logits = outputs.logits
 
         logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
 
         num_labels = logits.size(1)
 
+        #TO DO: compute weights based on frequency of relative labels in input
+        #below is just some random experiments with changing the weights to see if there was significant effect
+
         weights = [1] * num_labels
-
-        weights[1] = 0.1
-
-        weights[0] = 0.0001
+        weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
+        weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
 
 
         weights = [float(w) for w  in weights]
