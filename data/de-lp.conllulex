@@ -56,8 +56,7 @@
 3	das	das	ART	ART	_	4	det	_	_	_	_	_	_	_
 4	Bild	bild	NOUN	NN	Number=Sing	6	nsubj	_	_	_	_	_	_	_
 5	mal	mal	ADV	ADV	_	6	advmod	_	_	_	_	_	_	_
-6-1	nach	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	nach	p.Manner	p.Source
-6-2	gezeichnet	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+6	nachgezeichnet	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	nach	p.Manner	p.Source
 7	:	:	$.	$.	_	6	punct	_	_	_	_	_	_	_
 														
 # text = In dem Buch hieß es : `` Riesenschlangen verschlingen ihre Beute in einem Stück , ohne sie zu zerkauen .														
@@ -106,8 +105,7 @@
 4	viel	viel	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
 5	über	über	APPR	APPR	_	6	case	_	_	_	_	über	p.Topic	p.Topic
 6	Dschungelabenteuer	dschungelabenteuer	NOUN	NN	Number=Sing	7	nmod	_	_	_	_	_	_	_
-7-1	nach	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Theme	p.Purpose
-7-2	gedacht	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+7	nachgedacht	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Theme	p.Purpose
 8	und	und	KON	KON	_	7	cc	_	_	_	_	_	_	_
 9	dann	dann	ADV	ADV	_	10	advmod	_	_	_	_	_	_	_
 10	gelang	gelang	VVFIN	VVFIN	_	7	conj	_	_	_	_	_	_	_
@@ -367,8 +365,7 @@
 7	China	china	NE	NE	_	10	dobj	_	_	_	_	_	_	_
 8	von	von	APPR	APPR	_	9	case	_	_	_	_	von	p.ComparisonRef	p.ComparisonRef
 9	Arizona	arizona	NE	NE	_	10	nmod	_	_	_	_	_	_	_
-10-1	unter	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_	p.ComparisonRef	p.Co-Theme
-10-2	scheiden	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+10	unterscheiden	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_	p.ComparisonRef	p.Co-Theme
 11	.	.	$.	$.	_	10	punct	_	_	_	_	_	_	_
 														
 # text = Das ist sehr nützlich , wenn man sich in der Nacht verirrt hat .														
@@ -627,8 +624,7 @@
 22	Reparatur	reparatur	NOUN	NN	Number=Sing	25	dobj	_	_	_	_	_	_	_
 23	ganz	ganz	ADV	ADV	_	24	advmod	_	_	_	_	_	_	_
 24	allein	allein	ADV	ADV	_	25	advmod	_	_	_	_	_	_	_
-25-1	vor	vorzunehmen	VVIZU	VVIZU	_	14	xcomp	_	_	_	_	_	p.Purpose	p.Purpose
-25-2	zunehmen	vorzunehmen	VVIZU	VVIZU	_	14	xcomp	_	_	_	_	_	_	_
+25	vorzunehmen	vorzunehmen	VVIZU	VVIZU	_	14	xcomp	_	_	_	_	_	p.Purpose	p.Purpose
 26	.	.	$.	$.	_	14	punct	_	_	_	_	_	_	_
 														
 # text = Dabei ging es für mich um Leben und Tod .														
@@ -677,8 +673,7 @@
 1	Ich	ich	PPER	PPER	_	4	nsubj	_	_	_	_	_	_	_
 2	war	war	VAFIN	VAFIN	_	4	cop	_	_	_	_	_	_	_
 3	viel	viel	ADV	ADV	_	4	det	_	_	_	_	_	_	_
-4-1	ab	abgeschiedener	ADJD	ADJD	_	0	root	_	_	_	_	_	p.Locus	p.Source
-4-2	geschiedener	abgeschiedener	ADJD	ADJD	_	0	root	_	_	_	_	_	_	_
+4	abgeschiedener	abgeschiedener	ADJD	ADJD	_	0	root	_	_	_	_	_	p.Locus	p.Source
 5	als	als	KOKOM	KOKOM	_	11	case	_	_	_	_	als	p.ComparisonRef	p.ComparisonRef
 6	ein	ein	ART	ART	_	11	det	_	_	_	_	_	_	_
 7	Schiffbrüchiger	schiffbrüchiger	NOUN	NN	Number=Sing	11	advmod	_	_	_	_	_	_	_
@@ -693,8 +688,7 @@
 2	könnt	könnt	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 3	ihr	ihr	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
 4	euch	euch	PRF	PRF	_	5	dobj	_	_	_	_	_	_	_
-5-1	vor	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	p.Purpose	p.Theme
-5-2	stellen	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	_	_
+5	vorstellen	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	p.Purpose	p.Theme
 6	,	,	$,	$,	_	2	punct	_	_	_	_	_	_	_
 7	wie	wie	PWAV	PWAV	_	8	advmod	_	_	_	_	wie	p.ComparisonRef	p.ComparisonRef
 8	überrascht	überrascht	ADJD	ADJD	_	2	parataxis	_	_	_	_	_	_	_
@@ -781,8 +775,7 @@
 2	ich	ich	PPER	PPER	_	3	nsubj	_	_	_	_	_	_	_
 3	sah	sah	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 4	ein	ein	ART	ART	_	5	det	_	_	_	_	_	_	_
-5-1	außer	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	p.ComparisonRef	p.ComparisonRef
-5-2	gewöhnliches	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	_	_
+5	außergewöhnliches	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	p.ComparisonRef	p.ComparisonRef
 6	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 7	kleines	kleines	ADJA	ADJA	_	8	amod	_	_	_	_	_	_	_
 8	Kerlchen	kerlchen	NOUN	NN	Number=Sing	5	conj	_	_	_	_	_	_	_
@@ -839,8 +832,7 @@
 5	von	von	APPR	APPR	_	7	case	_	_	_	_	von	p.Source	p.Goal
 6	meiner	meiner	PPOSAT	PPOSAT	_	7	det	_	_	_	_	meiner	p.Theme	p.Gestalt
 7	Malerkarriere	malerkarriere	NOUN	NN	Number=Sing	8	nmod	_	_	_	_	_	_	_
-8-1	ab	abgebracht	VVPP	VVPP	_	4	root	_	_	_	_	_	p.Purpose	p.Purpose
-8-2	gebracht	abgebracht	VVPP	VVPP	_	4	root	_	_	_	_	_	_	_
+8	abgebracht	abgebracht	VVPP	VVPP	_	4	root	_	_	_	_	_	p.Purpose	p.Purpose
 9	als	als	KOUS	KOUS	_	13	mark	_	_	_	_	als	p.Time	p.Time
 10	ich	ich	PPER	PPER	_	13	nsubj	_	_	_	_	_	_	_
 11	sechs	sechs	CARD	CARD	_	12	nummod	_	_	_	_	_	_	_
@@ -869,8 +861,7 @@
 4	voller	voller	ADJA	ADJA	_	5	amod	_	_	_	_	_	_	_
 5	Verwunderung	verwunderung	NOUN	NN	Number=Sing	2	dobj	_	_	_	_	_	_	_
 6	mit	mit	APPR	APPR	_	8	case	_	_	_	_	mit	p.Manner	p.Means
-7-1	auf	aufgerissenen	ADJA	ADJA	_	8	amod	_	_	_	_	_	p.Manner	p.Manner
-7-2	gerissenen	aufgerissenen	ADJA	ADJA	_	8	amod	_	_	_	_	_	_	_
+7	aufgerissenen	aufgerissenen	ADJA	ADJA	_	8	amod	_	_	_	_	_	p.Manner	p.Manner
 8	Augen	augen	NOUN	NN	Number=Sing	5	nmod	_	_	_	_	_	_	_
 9	auf	auf	APPR	APPR	_	11	case	_	_	_	_	auf	p.Stimulus	p.Locus
 10	diese	diese	PDAT	PDAT	_	11	det	_	_	_	_	_	_	_
@@ -1498,8 +1489,7 @@
 10	schien	schien	VVFIN	VVFIN	_	4	conj	_	_	_	_	_	_	_
 11	meine	meine	VVFIN	VVFIN	_	13	dobj	_	_	_	_	meine	p.Originator	p.Theme
 12	zu	zu	PTKZU	PTKZU	_	13	aux	_	_	_	_	_	_	_
-13-1	über	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	_	p.Stimulus	p.Locus
-13-2	hören	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	_	_	_
+13	überhören	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	_	p.Stimulus	p.Locus
 14	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = Es waren zufällig ausgesprochene Worte , durch die mir nach und nach alles klar wurde .														
@@ -1595,8 +1585,7 @@
 2	war	war	VAFIN	VAFIN	_	3	cop	_	_	_	_	_	_	_
 3	stolz	stolz	ADJD	ADJD	_	0	root	_	_	_	_	_	_	_
 4	ihm	ihm	PPER	PPER	_	5	iobj	_	_	_	_	ihm	p.Goal	p.Recipient
-5-1	mit	mitzuteilen	VVIZU	VVIZU	_	3	acl	_	_	_	_	_	p.Recipient	p.Direction
-5-2	zuteilen	mitzuteilen	VVIZU	VVIZU	_	3	acl	_	_	_	_	_	_	_
+5	mitzuteilen	mitzuteilen	VVIZU	VVIZU	_	3	acl	_	_	_	_	_	p.Recipient	p.Direction
 6	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 7	dass	dass	KOUS	KOUS	_	9	mark	_	_	_	_	_	_	_
 8	ich	ich	PPER	PPER	_	9	nsubj	_	_	_	_	_	_	_
@@ -1679,8 +1668,7 @@
 10	mir	mir	PPER	PPER	_	13	iobj	_	_	_	_	mir	p.Experiencer	p.Experiencer
 11	an	a	APPR	APPR	_	12	case	_	_	_	_	an	p.Manner	p.Locus
 12	Unheil	unheil	NOUN	NN	Number=Sing	13	nmod	_	_	_	_	_	_	_
-13-1	zu	zustößt	VVFIN	VVFIN	_	7	ccomp	_	_	_	_	_	p.Locus	p.Direction
-13-2	stößt	zustößt	VVFIN	VVFIN	_	7	ccomp	_	_	_	_	_	_	_
+13	zustößt	zustößt	VVFIN	VVFIN	_	7	ccomp	_	_	_	_	_	p.Locus	p.Direction
 14	.	.	$.	$.	_	2	punct	_	_	_	_	_	_	_
 														
 # text = Dann fügte er hinzu : - `` Also kommst Du auch aus dem Himmel !														
@@ -1806,8 +1794,7 @@
 1	Ihr	ihr	PPER	PPER	_	2	nmod:poss	_	_	_	_	_	_	_
 2	könnt	könnt	VVFIN	VVFIN	_	4	nsubj	_	_	_	_	_	_	_
 3	euch	euch	PRF	PRF	_	4	dobj	_	_	_	_	_	_	_
-4-1	vor	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	vor	p.Manner	p.Locus
-4-2	stellen	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+4	vorstellen	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	vor	p.Manner	p.Locus
 5	,	,	$,	$,	_	4	punct	_	_	_	_	_	_	_
 6	wie	wie	PWAV	PWAV	_	10	mark	_	_	_	_	wie	p.Manner	p.Manner
 7	sehr	sehr	ADV	ADV	_	10	advmod	_	_	_	_	_	_	_
@@ -1826,8 +1813,7 @@
 20	''	''	ADV	ADV	_	19	punct	_	_	_	_	_	_	_
 21	schon	schon	ADV	ADV	_	23	advmod	_	_	_	_	_	_	_
 22	halb	halb	ADJD	ADJD	_	23	advmod	_	_	_	_	_	_	_
-23-1	an	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	_	p.Goal	p.Goal
-23-2	vertraut	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	_	_	_
+23	anvertraut	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	_	p.Goal	p.Goal
 24	hatte	hatte	VAFIN	VAFIN	_	23	aux	_	_	_	_	_	_	_
 25	.	.	$.	$.	_	14	punct	_	_	_	_	_	_	_
 														
@@ -1865,8 +1851,7 @@
 3	du	du	PPER	PPER	_	6	nsubj	_	_	_	_	_	_	_
 4	mein	mein	PPOSAT	PPOSAT	_	5	det	_	_	_	_	mein	p.Possessor	p.Gestalt
 5	Schaf	schaf	NOUN	NN	Number=Sing	6	dobj	_	_	_	_	_	_	_
-6-1	mit	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Goal
-6-2	nehmen	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+6	mitnehmen	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Goal
 7	?	?	$.	$.	_	6	punct	_	_	_	_	_	_	_
 8	''	''	ADJD	ADJD	_	6	punct	_	_	_	_	_	_	_
 														
@@ -2248,8 +2233,7 @@
 6	einem	einem	ART	ART	_	8	det	_	_	_	_	_	_	_
 7	Internationalen	internationalen	ADJA	ADJA	_	8	amod	_	_	_	_	_	_	_
 8	AstronomieKongress	astronomiekongress	NOUN	NN	Number=Sing	9	nmod	_	_	_	_	_	_	_
-9-1	vor	vorgeführt	VVPP	VVPP	_	3	dobj	_	_	_	_	_	p.Manner	p.Goal
-9-2	geführt	vorgeführt	VVPP	VVPP	_	3	dobj	_	_	_	_	_	_	_
+9	vorgeführt	vorgeführt	VVPP	VVPP	_	3	dobj	_	_	_	_	_	p.Manner	p.Goal
 10	.	.	$.	$.	_	3	punct	_	_	_	_	_	_	_
 														
 # text = Aber wegen seiner traditionellen Tracht hatte ihm niemand glauben wollen .														
@@ -2862,8 +2846,7 @@
 9	mit	mit	APPR	APPR	_	11	case	_	_	_	_	mit	p.Theme	p.Theme
 10	dem	dem	PRELS	PRELS	_	11	det	_	_	_	_	_	_	_
 11	Zeichnen	zeichnen	VVFIN	VVFIN	_	12	nmod	_	_	_	_	_	_	_
-12-1	an	anzufangen	VVIZU	VVIZU	_	3	xcomp	_	_	_	_	_	p.StartTime	p.StartTime
-12-2	zufangen	anzufangen	VVIZU	VVIZU	_	3	xcomp	_	_	_	_	_	_	_
+12	anzufangen	anzufangen	VVIZU	VVIZU	_	3	xcomp	_	_	_	_	_	p.StartTime	p.StartTime
 13	,	,	$,	$,	_	3	punct	_	_	_	_	_	_	_
 														
 # text = wenn man nie etwas Anderes versucht hat , als mit sechs Jahren eine geschlossene und eine offene Riesenschlange zu malen .														
@@ -3009,8 +2992,7 @@
 3	muss	muss	VVFIN	VVFIN	_	6	aux	_	_	_	_	_	_	_
 4	man	man	PIS	PIS	_	6	nsubj	_	_	_	_	_	_	_
 5	mir	mir	PPER	PPER	_	6	iobj	_	_	_	_	mir	p.Stimulus	p.Goal
-6-1	nach	nachsehen	ADJD	ADJD	_	0	root	_	_	_	_	_	p.Stimulus	p.Topic
-6-2	sehen	nachsehen	ADJD	ADJD	_	0	root	_	_	_	_	_	_	_
+6	nachsehen	nachsehen	ADJD	ADJD	_	0	root	_	_	_	_	_	p.Stimulus	p.Topic
 7	.	.	$.	$.	_	6	punct	_	_	_	_	_	_	_
 														
 # text = Mein Freund gab mir nie irgendwelche Erklärungen .														
@@ -3146,8 +3128,7 @@
 17	einem	einem	ART	ART	_	19	det	_	_	_	_	_	_	_
 18	schlimmen	schlimmen	ADJA	ADJA	_	19	amod	_	_	_	_	_	_	_
 19	Zweifel	zweifel	NOUN	NN	Number=Sing	20	nmod	_	_	_	_	_	_	_
-20-1	über	überkommen	ADV	ADV	_	14	nmod	_	_	_	_	_	p.Experiencer	p.Path
-20-2	kommen	überkommen	ADV	ADV	_	14	nmod	_	_	_	_	_	_	_
+20	überkommen	überkommen	ADV	ADV	_	14	nmod	_	_	_	_	_	p.Experiencer	p.Path
 21	:	:	$.	$.	_	20	punct	_	_	_	_	_	_	_
 22	-	-	$[	$[	_	27	punct	_	_	_	_	_	_	_
 23	``	``	ADJD	ADJD	_	27	punct	_	_	_	_	_	_	_
@@ -3256,8 +3237,7 @@
 28	ganze	ganze	ADJA	ADJA	_	29	amod	_	_	_	_	_	_	_
 29	Herde	herde	NOUN	NN	Number=Sing	32	nsubj	_	_	_	_	_	_	_
 30	Elefanten	elefanten	NE	NE	_	31	amod	_	_	_	_	_	_	_
-31-1	mit	mitnehmen	VVINF	VVINF	_	29	det	_	_	_	_	_	p.Accompanier	p.Accompanier
-31-2	nehmen	mitnehmen	VVINF	VVINF	_	29	det	_	_	_	_	_	_	_
+31	mitnehmen	mitnehmen	VVINF	VVINF	_	29	det	_	_	_	_	_	p.Accompanier	p.Accompanier
 32	würde	würde	VAFIN	VAFIN	_	19	advcl	_	_	_	_	_	_	_
 33	,	,	$,	$,	_	19	punct	_	_	_	_	_	_	_
 34	so	so	ADV	ADV	_	43	advmod	_	_	_	_	_	_	_
@@ -3579,8 +3559,7 @@
 														
 # text = Er durchbohrt ihn mit seinen Wurzeln .														
 1	Er	er	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
-2-1	durch	durchbohrt	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Path	p.Path
-2-2	bohrt	durchbohrt	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+2	durchbohrt	durchbohrt	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Path	p.Path
 3	ihn	ihn	PPER	PPER	_	2	dobj	_	_	_	_	_	_	_
 4	mit	mit	APPR	APPR	_	6	case	_	_	_	_	mit	p.Instrument	p.Instrument
 5	seinen	seinen	PPOSAT	PPOSAT	_	6	det	_	_	_	_	seinen	p.Whole	p.Gestalt
@@ -3668,8 +3647,7 @@
 15	von	von	APPR	APPR	_	17	case	_	_	_	_	von	p.ComparisonRef	p.Accompanier
 16	den	den	ART	ART	_	17	det	_	_	_	_	_	_	_
 17	Rosen	rosen	NOUN	NN	Number=Sing	18	nmod	_	_	_	_	_	_	_
-18-1	unter	unterscheiden	VVINF	VVINF	_	5	advcl	_	_	_	_	_	p.Manner	p.Manner
-18-2	scheiden	unterscheiden	VVINF	VVINF	_	5	advcl	_	_	_	_	_	_	_
+18	unterscheiden	unterscheiden	VVINF	VVINF	_	5	advcl	_	_	_	_	_	p.Manner	p.Manner
 19	kann	kann	VMFIN	VMFIN	_	18	aux	_	_	_	_	_	_	_
 20	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 21	denen	denen	PRELS	PRELS	_	27	dobj	_	_	_	_	_	_	_
@@ -3720,8 +3698,8 @@
 23	Kinder	kinder	NOUN	NN	Number=Sing	26	dobj	_	_	_	_	_	_	_
 24	bei	bei	APPR	APPR	_	25	case	_	_	_	_	bei	p.Accompanier	p.Locus
 25	mir	mir	PPER	PPER	_	26	nmod	_	_	_	_	_	_	_
-26-1	zu	zuhause	VVIZU	VVIZU	_	4	advcl	_	_	_	_	_	p.Locus	p.Locus
-26-1	hause	zuhause	VVIZU	VVIZU	_	4	advcl	_	_	_	_	_	_	_
+26	zuhause	zuhause	VVIZU	VVIZU	_	4	advcl	_	_	_	_	_	p.Locus	p.Locus
+26	zuhause	zuhause	VVIZU	VVIZU	_	4	advcl	_	_	_	_	_	_	_
 27	es	es	PPER	PPER	_	26	nsubj	_	_	_	_	_	_	_
 28	sich	sich	PRF	PRF	_	29	dobj	_	_	_	_	sich	p.Agent	p.Beneficiary
 29	einprägten	einprägten	VVINF	VVINF	_	26	xcomp	_	_	_	_	_	_	_
@@ -4047,8 +4025,7 @@
 2	uns	uns	PRF	PRF	_	1	iobj	_	_	_	_	_	_	_
 3	einen	einen	ART	ART	_	4	det	_	_	_	_	_	_	_
 4	Sonnenuntergang	sonnenuntergang	NOUN	NN	Number=Sing	5	dobj	_	_	_	_	_	_	_
-5-1	an	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Stimulus	p.Goal
-5-2	schauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+5	anschauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Stimulus	p.Goal
 6	...	...	$[	$[	_	5	punct	_	_	_	_	_	_	_
 7	''	''	VVINF	VVINF	_	5	punct	_	_	_	_	_	_	_
 														
@@ -4079,8 +4056,7 @@
 5	dass	dass	KOUS	KOUS	_	8	mark	_	_	_	_	_	_	_
 6	die	die	ART	ART	_	7	det	_	_	_	_	_	_	_
 7	Sonne	sonne	NOUN	NN	Number=Sing	8	nsubj	_	_	_	_	_	_	_
-8-1	unter	untergeht	VVFIN	VVFIN	_	3	ccomp	_	_	_	_	_	p.Direction	p.Direction
-8-2	geht	untergeht	VVFIN	VVFIN	_	3	ccomp	_	_	_	_	_	_	_
+8	untergeht	untergeht	VVFIN	VVFIN	_	3	ccomp	_	_	_	_	_	p.Direction	p.Direction
 9	.	.	$.	$.	_	3	punct	_	_	_	_	_	_	_
 10	''	''	NE	NE	_	3	punct	_	_	_	_	_	_	_
 														
@@ -4609,8 +4585,7 @@
 11	dieser	dieser	PDAT	PDAT	_	12	det	_	_	_	_	_	_	_
 12	Bolzen	bolzen	NOUN	NN	Number=Sing	14	nsubj	_	_	_	_	_	_	_
 13	nicht	nicht	PTKNEG	PTKNEG	_	14	neg	_	_	_	_	_	_	_
-14-1	nach	nachgibt	VVFIN	VVFIN	_	2	ccomp	_	_	_	_	_	p.Manner	p.Direction
-14-2	gibt	nachgibt	VVFIN	VVFIN	_	2	ccomp	_	_	_	_	_	_	_
+14	nachgibt	nachgibt	VVFIN	VVFIN	_	2	ccomp	_	_	_	_	_	p.Manner	p.Direction
 15	,	,	$,	$,	_	14	punct	_	_	_	_	_	_	_
 16	muss	muss	VVFIN	VVFIN	_	22	aux	_	_	_	_	_	_	_
 17	ich	ich	PPER	PPER	_	22	nsubj	_	_	_	_	_	_	_
@@ -5435,8 +5410,7 @@
 20	der	der	ART	ART	_	22	det	_	_	_	_	_	_	_
 21	kleine	kleine	ADJA	ADJA	_	22	amod	_	_	_	_	_	_	_
 22	Prinz	prinz	NOUN	NN	Number=Sing	28	nsubj	_	_	_	_	_	_	_
-23-1	über	überwachte	VVFIN	VVFIN	_	22	appos	_	_	_	_	_	p.Theme	p.Path
-23-2	wachte	überwachte	VVFIN	VVFIN	_	22	appos	_	_	_	_	_	_	_
+23	überwachte	überwachte	VVFIN	VVFIN	_	22	appos	_	_	_	_	_	p.Theme	p.Path
 24	ganz	ganz	ADV	ADV	_	25	advmod	_	_	_	_	_	_	_
 25	genau	genau	ADJD	ADJD	_	28	advmod	_	_	_	_	_	_	_
 26	diesen	diesen	PDAT	PDAT	_	28	det	_	_	_	_	_	_	_
@@ -5446,8 +5420,7 @@
 30	der	der	PDS	PDS	_	33	nsubj	_	_	_	_	_	_	_
 31	nicht	nicht	PTKNEG	PTKNEG	_	32	neg	_	_	_	_	_	_	_
 32	so	so	ADV	ADV	_	33	advmod	_	_	_	_	_	_	_
-33-1	aus	aussah	ADJD	ADJD	_	16	acl	_	_	_	_	_	p.`	p.`
-33-2	sah	aussah	ADJD	ADJD	_	16	acl	_	_	_	_	_	_	_
+33	aussah	aussah	ADJD	ADJD	_	16	acl	_	_	_	_	_	`	`
 34	wie	wie	KOKOM	KOKOM	_	36	case	_	_	_	_	wie	p.ComparisonRef	p.ComparisonRef
 35	die	die	ART	ART	_	36	det	_	_	_	_	_	_	_
 36	anderen	anderen	ADJA	ADJA	_	33	nmod	_	_	_	_	_	_	_
@@ -5569,8 +5542,7 @@
 4	in	in	APPR	APPR	_	6	case	_	_	_	_	in	p.Manner	p.Locus
 5	voller	voller	ADJA	ADJA	_	6	amod	_	_	_	_	_	_	_
 6	Schönheit	schönheit	NOUN	NN	Number=Sing	7	nmod	_	_	_	_	_	_	_
-7-1	auf	aufblühen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Manner	p.Direction
-7-2	blühen	aufblühen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+7	aufblühen	aufblühen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Manner	p.Direction
 8	.	.	$.	$.	_	7	punct	_	_	_	_	_	_	_
 														
 # text = Oh ja !														
@@ -5606,8 +5578,7 @@
 7	als	als	KOKOM	KOKOM	_	10	mark	_	_	_	_	als	p.Time	p.Time
 8	die	die	ART	ART	_	9	det	_	_	_	_	_	_	_
 9	Sonne	sonne	NOUN	NN	Number=Sing	10	nsubj	_	_	_	_	_	_	_
-10-1	auf	aufge	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	p.Direction	p.Direction
-10-2	ging	aufge	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	_	_
+10	aufge	aufge	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	p.Direction	p.Direction
 11	,	,	$,	$,	_	10	punct	_	_	_	_	_	_	_
 12	hatte	hatte	VAFIN	VAFIN	_	15	aux	_	_	_	_	_	_	_
 13	sie	sie	PPER	PPER	_	15	nsubj	_	_	_	_	_	_	_
@@ -6165,8 +6136,7 @@
 1	Man	man	PIS	PIS	_	4	nmod	_	_	_	_	_	_	_
 2	muss	muss	VVFIN	VVFIN	_	4	aux	_	_	_	_	_	_	_
 3	sie	sie	PPER	PPER	_	4	nsubj	_	_	_	_	_	_	_
-4-1	an	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Stimulus	p.Direction
-4-2	schauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+4	anschauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Stimulus	p.Direction
 5	und	und	KON	KON	_	4	cc	_	_	_	_	_	_	_
 6	einatmen	einatmen	VVINF	VVINF	_	4	conj	_	_	_	_	_	_	_
 7	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
@@ -6367,9 +6337,7 @@
 6	sich	sich	PRF	PRF	_	9	iobj	_	_	_	_	sich	p.Beneficiary	p.Beneficiary
 7	sein	sein	PPOSAT	PPOSAT	_	9	iobj	_	_	_	_	_	_	_
 8	Frühstück	frühstück	NOUN	NN	Number=Sing	9	dobj	_	_	_	_	_	_	_
-9-1	auf	aufzuwärmen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
-9-2	zu	aufzuwärmen	VVIZU	VVIZU	_	3	advcl	_	_	1:2	_	_	_	_
-9-3	wärmen	aufzuwärmen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
+9	aufzuwärmen	aufzuwärmen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
 10	.	.	$.	$.	_	3	punct	_	_	_	_	_	_	_
 														
 # text = Er besaß auch einen erloschenen Vulkan .														
@@ -6444,9 +6412,7 @@
 10	um	um	KOUI	KOUI	_	13	mark	_	_	1:1	_	um zu	p.ComparisonRef	p.Purpose
 11	unsere	unsere	PPOSAT	PPOSAT	_	12	det	_	_	_	_	unsere	p.Gestalt	p.Gestalt
 12	Vulkane	vulkane	NOUN	NN	Number=Sing	13	dobj	_	_	_	_	_	_	_
-13-1	ab	abzufegen	VVIZU	VVIZU	_	8	advcl	_	_	_	_	_	_	_
-13-2	zu	abzufegen	VVIZU	VVIZU	_	8	advcl	_	_	1:2	_	_	_	_
-13-3	fegen	abzufegen	VVIZU	VVIZU	_	8	advcl	_	_	_	_	_	_	_
+13	abzufegen	abzufegen	VVIZU	VVIZU	_	8	advcl	_	_	_	_	_	_	_
 14	.	.	$.	$.	_	8	punct	_	_	_	_	_	_	_
 														
 # text = Darum bereiten sie uns so viele Sorgen .														
@@ -6803,8 +6769,7 @@
 2	die	die	ART	ART	_	4	det	_	_	_	_	_	_	_
 3	großen	großen	ADJA	ADJA	_	4	amod	_	_	_	_	_	_	_
 4	Tiere	tiere	NOUN	NN	Number=Sing	5	dobj	_	_	_	_	_	_	_
-5-1	an	angeht	VVFIN	VVFIN	_	10	csubj	_	_	_	_	_	p.Topic	p.Topic
-5-2	geht	angeht	VVFIN	VVFIN	_	10	csubj	_	_	_	_	_	_	_
+5	angeht	angeht	VVFIN	VVFIN	_	10	csubj	_	_	_	_	_	p.Topic	p.Topic
 6	,	,	$,	$,	_	10	punct	_	_	_	_	_	_	_
 7	habe	habe	VAFIN	VAFIN	_	10	aux	_	_	_	_	_	_	_
 8	ich	ich	PPER	PPER	_	10	nsubj	_	_	_	_	_	_	_
@@ -7127,8 +7092,7 @@
 														
 # text = Ich untersage es dir .														
 1	Ich	ich	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
-2-1	unter	untersage	VVFIN	VVFIN	_	0	root	_	_	_	_	_	p.Topic	p.Goal
-2-2	sage	untersage	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
+2	untersage	untersage	VVFIN	VVFIN	_	0	root	_	_	_	_	_	p.Topic	p.Goal
 3	es	es	PPER	PPER	_	2	dobj	_	_	_	_	_	_	_
 4	dir	dir	PPER	PPER	_	2	xcomp	_	_	_	_	dir	p.Beneficiary	p.Beneficiary
 5	.	.	$.	$.	_	2	punct	_	_	_	_	_	_	_
@@ -7469,8 +7433,7 @@
 13	wenn	wenn	KOUS	KOUS	_	16	mark	_	_	_	_	_	_	_
 14	ich	ich	PPER	PPER	_	16	nsubj	_	_	_	_	_	_	_
 15	Sie	sie	PPER	PPER	_	16	dobj	_	_	_	_	_	_	_
-16-1	unter	unterbreche	VVFIN	VVFIN	_	10	advcl	_	_	_	_	_	p.Goal	p.Manner
-16-2	breche	unterbreche	VVFIN	VVFIN	_	10	advcl	_	_	_	_	_	_	_
+16	unterbreche	unterbreche	VVFIN	VVFIN	_	10	advcl	_	_	_	_	_	p.Goal	p.Manner
 17	...	...	$[	$[	_	16	punct	_	_	_	_	_	_	_
 18	''	''	CARD	CARD	_	10	punct	_	_	_	_	_	_	_
 														
@@ -7483,8 +7446,7 @@
 6	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 7	mich	mich	PRF	PRF	_	9	dobj	_	_	_	_	_	_	_
 8	zu	zu	PTKZU	PTKZU	_	9	aux	_	_	_	_	_	_	_
-9-1	unter	unterbrechen	VVINF	VVINF	_	5	xcomp	_	_	_	_	_	p.Goal	p.Manner
-9-2	brechen	unterbrechen	VVINF	VVINF	_	5	xcomp	_	_	_	_	_	_	_
+9	unterbrechen	unterbrechen	VVINF	VVINF	_	5	xcomp	_	_	_	_	_	p.Goal	p.Manner
 10	''	''	ADJD	ADJD	_	5	punct	_	_	_	_	_	_	_
 11	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 12	sagte	sagte	VVFIN	VVFIN	_	5	parataxis	_	_	_	_	_	_	_
@@ -7733,8 +7695,7 @@
 17	der	der	ART	ART	_	18	det	_	_	_	_	_	_	_
 18	Sonne	sonne	NOUN	NN	Number=Sing	16	det	_	_	_	_	_	_	_
 19	,	,	$,	$,	_	16	punct	_	_	_	_	_	_	_
-20-1	unter	unterzugehen	VVINF	VVINF	_	16	conj	_	_	_	_	_	p.Direction	p.Direction
-20-2	zugehen	unterzugehen	VVINF	VVINF	_	16	conj	_	_	_	_	_	_	_
+20	unterzugehen	unterzugehen	VVINF	VVINF	_	16	conj	_	_	_	_	_	p.Direction	p.Direction
 21	...	...	$[	$[	_	16	punct	_	_	_	_	_	_	_
 22	''	''	VVINF	VVINF	_	16	punct	_	_	_	_	_	_	_
 														
@@ -7781,8 +7742,7 @@
 40	erhaltenen	erhaltenen	ADJA	ADJA	_	41	amod	_	_	_	_	_	_	_
 41	Befehl	befehl	NOUN	NN	Number=Sing	43	dobj	_	_	_	_	_	_	_
 42	nicht	nicht	PTKNEG	PTKNEG	_	43	neg	_	_	_	_	_	_	_
-43-1	aus	ausführen	VVINF	VVINF	_	34	conj	_	_	_	_	_	p.`	p.`
-43-2	führen	ausführen	VVINF	VVINF	_	34	conj	_	_	_	_	_	_	_
+43	ausführen	ausführen	VVINF	VVINF	_	34	conj	_	_	_	_	_	`	`
 44	würde	würde	VAFIN	VAFIN	_	43	aux	_	_	_	_	_	_	_
 45	?	?	$.	$.	_	22	punct	_	_	_	_	_	_	_
 														
@@ -7870,8 +7830,7 @@
 15	es	es	PPER	PPER	_	18	nsubj	_	_	_	_	_	_	_
 16	eine	eine	ART	ART	_	17	det	_	_	_	_	_	_	_
 17	Revolution	revolution	NOUN	NN	Number=Sing	18	dobj	_	_	_	_	_	_	_
-18-1	an	anzetteln	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Stimulus	p.Source
-18-2	zetteln	anzetteln	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+18	anzetteln	anzetteln	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Stimulus	p.Source
 19	.	.	$.	$.	_	18	punct	_	_	_	_	_	_	_
 														
 # text = Ich habe das Recht , Gehorsam zu verlangen , weil meine Befehle vernünftig sind . ''														
@@ -7941,8 +7900,7 @@
 1	Ich	ich	PPER	PPER	_	4	nsubj	_	_	_	_	_	_	_
 2	werde	werde	VAFIN	VAFIN	_	4	aux	_	_	_	_	_	_	_
 3	ihn	ihn	PPER	PPER	_	4	dobj	_	_	_	_	_	_	_
-4-1	an	anordnen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-4-2	ordnen	anordnen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+4	anordnen	anordnen	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 5	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = Aber da ich zu regieren verstehe , werde ich abwarten , bis die Umstände günstig sind . ''														
@@ -7955,8 +7913,7 @@
 7	,	,	$,	$,	_	10	punct	_	_	_	_	_	_	_
 8	werde	werde	VAFIN	VAFIN	_	10	aux	_	_	_	_	_	_	_
 9	ich	ich	PPER	PPER	_	10	nsubj	_	_	_	_	_	_	_
-10-1	ab	abwarten	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-10-2	warten	abwarten	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+10	abwarten	abwarten	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 11	,	,	$,	$,	_	10	punct	_	_	_	_	_	_	_
 12	bis	bis	KOUS	KOUS	_	15	mark	_	_	_	_	bis	p.EndTime	p.EndTime
 13	die	die	ART	ART	_	14	det	_	_	_	_	_	_	_
@@ -8106,8 +8063,7 @@
 1	Ich	ich	PPER	PPER	_	4	nsubj	_	_	_	_	_	_	_
 2	werde	werde	VAFIN	VAFIN	_	4	aux	_	_	_	_	_	_	_
 3	wieder	wieder	ADV	ADV	_	4	advmod	_	_	_	_	_	_	_
-4-1	auf	aufbrechen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Manner
-4-2	brechen	aufbrechen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+4	aufbrechen	aufbrechen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Manner
 5	!	!	$.	$.	_	4	punct	_	_	_	_	_	_	_
 6	''	''	VVINF	VVINF	_	4	punct	_	_	_	_	_	_	_
 														
@@ -8455,8 +8411,7 @@
 4	von	von	APPR	APPR	_	6	case	_	_	_	_	von	p.Theme	p.Source
 5	deinem	deinem	ADJA	ADJA	_	6	amod	_	_	_	_	deinem	p.Theme	p.Gestalt
 6	Urteil	urteil	NOUN	NN	Number=Sing	7	nmod	_	_	_	_	_	_	_
-7-1	ab	abhängen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Source	p.Topic
-7-2	hängen	abhängen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+7	abhängen	abhängen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Source	p.Topic
 8	.	.	$.	$.	_	7	punct	_	_	_	_	_	_	_
 														
 # text = Aber jedes Mal wirst du sie begnadigen , denn sie muss ja aufgespart werden .														
@@ -8777,8 +8732,7 @@
 8	wenn	wenn	KOUS	KOUS	_	11	mark	_	_	_	_	_	_	_
 9	jemand	jemand	PIS	PIS	_	11	nsubj	_	_	_	_	_	_	_
 10	mich	mich	PPER	PPER	_	11	dobj	_	_	_	_	_	_	_
-11-1	an	anhimmelt	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	p.Goal	p.Goal
-11-2	himmelt	anhimmelt	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	_	_
+11	anhimmelt	anhimmelt	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	p.Goal	p.Goal
 12	...	...	$[	$[	_	15	punct	_	_	_	_	_	_	_
 13	Nur	nur	ADV	ADV	_	15	advmod	_	_	_	_	_	_	_
 14	leider	leider	ADV	ADV	_	15	advmod	_	_	_	_	_	_	_
@@ -9411,8 +9365,7 @@
 3	Ihre	ihre	PPOSAT	PPOSAT	_	4	det	_	_	_	_	ihre	p.Possessor	p.Possessor
 4	Zigarette	zigarette	NOUN	NN	Number=Sing	6	nsubj	_	_	_	_	_	_	_
 5	ist	ist	VAFIN	VAFIN	_	6	cop	_	_	_	_	_	_	_
-6-1	aus	ausgegangen	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Manner	p.Manner
-6-2	gegangen	ausgegangen	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+6	ausgegangen	ausgegangen	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Manner	p.Manner
 7	.	.	$.	$.	_	6	punct	_	_	_	_	_	_	_
 8	''	''	VVPP	VVPP	_	6	punct	_	_	_	_	_	_	_
 														
@@ -9456,9 +9409,7 @@
 4	um	um	KOUI	KOUI	_	7	mark	_	_	1:1	_	um zu	p.Goal	p.Goal
 5	sie	sie	PPER	PPER	_	7	dobj	_	_	_	_	_	_	_
 6	wieder	wieder	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
-7-1	an	anzuzünden	VVIZU	VVIZU	_	2	advcl	_	_	_	_	_	p.Goal	p.Manner
-7-2	zu	anzuzünden	VVIZU	VVIZU	_	2	advcl	_	_	1:2	_	_	_	_
-7-3	zünden	anzuzünden	VVIZU	VVIZU	_	2	advcl	_	_	_	_	_	_	_
+7	anzuzünden	anzuzünden	VVIZU	VVIZU	_	2	advcl	_	_	_	_	_	p.Goal	p.Manner
 8	.	.	$.	$.	_	2	punct	_	_	_	_	_	_	_
 														
 # text = Uff !														
@@ -9562,8 +9513,7 @@
 9	von	von	APPR	APPR	_	11	case	_	_	_	_	von	p.Topic	p.Topic
 10	einer	einer	ART	ART	_	11	det	_	_	_	_	_	_	_
 11	Frage	frage	NOUN	NN	Number=Sing	12	nmod	_	_	_	_	_	_	_
-12-1	ab	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	p.Source	p.Direction
-12-2	ließ	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	_	_
+12	abließ	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	p.Source	p.Direction
 13	,	,	$,	$,	_	12	punct	_	_	_	_	_	_	_
 14	wenn	wenn	KOUS	KOUS	_	18	mark	_	_	_	_	_	_	_
 15	er	er	PPER	PPER	_	18	nsubj	_	_	_	_	_	_	_
@@ -10315,8 +10265,7 @@
 14	Hals	hals	NOUN	NN	Number=Sing	15	nmod	_	_	_	_	_	_	_
 15	binden	binden	VVINF	VVINF	_	6	acl	_	_	_	_	_	_	_
 16	und	und	KON	KON	_	15	cc	_	_	_	_	_	_	_
-17-1	mit	mitnehmen	VVFIN	VVFIN	_	15	conj	_	_	_	_	_	p.Accompanier	p.Accompanier
-17-2	nehmen	mitnehmen	VVFIN	VVFIN	_	15	conj	_	_	_	_	_	_	_
+17	mitnehmen	mitnehmen	VVFIN	VVFIN	_	15	conj	_	_	_	_	_	p.Accompanier	p.Accompanier
 18	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = Wenn mir eine Blume gehört , kann ich sie pflücken und mitnehmen .														
@@ -10331,8 +10280,7 @@
 9	sie	sie	PPER	PPER	_	10	dobj	_	_	_	_	_	_	_
 10	pflücken	pflücken	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
 11	und	und	KON	KON	_	10	cc	_	_	_	_	_	_	_
-12-1	mit	mitnehmen	VVINF	VVINF	_	10	conj	_	_	_	_	_	p.Accompanier	p.Accompanier
-12-2	nehmen	mitnehmen	VVINF	VVINF	_	10	conj	_	_	_	_	_	_	_
+12	mitnehmen	mitnehmen	VVINF	VVINF	_	10	conj	_	_	_	_	_	p.Accompanier	p.Accompanier
 13	.	.	$.	$.	_	10	punct	_	_	_	_	_	_	_
 														
 # text = Aber du kannst die Sterne ja nicht pflücken ! ''														
@@ -11276,8 +11224,7 @@
 17	wie	wie	PWAV	PWAV	_	15	case	_	_	_	_	wie	p.Manner	p.Manner
 18	du	du	PPER	PPER	_	17	root	_	_	_	_	_	_	_
 19	dich	dich	PRF	PRF	_	20	advmod	_	_	_	_	_	_	_
-20-1	aus	ausruhen	VVINF	VVINF	_	18	conj	_	_	_	_	_	p.`	p.`
-20-2	ruhen	ausruhen	VVINF	VVINF	_	18	conj	_	_	_	_	_	_	_
+20	ausruhen	ausruhen	VVINF	VVINF	_	18	conj	_	_	_	_	_	`	`
 21	kannst	kannst	VMFIN	VMFIN	_	20	appos	_	_	_	_	_	_	_
 22	,	,	$,	$,	_	26	punct	_	_	_	_	_	_	_
 23	wann	wann	PWAV	PWAV	_	26	advmod	_	_	_	_	_	_	_
@@ -11331,8 +11278,7 @@
 18	mit	mit	APPR	APPR	_	20	case	_	_	_	_	mit	p.Means	p.Means
 19	drei	drei	CARD	CARD	_	20	nummod	_	_	_	_	_	_	_
 20	Hüpfern	hüpfern	NOUN	NN	Number=Sing	21	nmod	_	_	_	_	_	_	_
-21-1	um	umrundet	VVPP	VVPP	_	13	ccomp	_	_	_	_	_	p.Path	p.Path
-21-2	rundet	umrundet	VVPP	VVPP	_	13	ccomp	_	_	_	_	_	_	_
+21	umrundet	umrundet	VVPP	VVPP	_	13	ccomp	_	_	_	_	_	p.Path	p.Path
 22	hast	hast	VAFIN	VAFIN	_	21	aux	_	_	_	_	_	_	_
 23	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
@@ -11357,8 +11303,7 @@
 1	Wenn	wenn	KOUS	KOUS	_	5	mark	_	_	_	_	_	_	_
 2	du	du	PPER	PPER	_	5	nsubj	_	_	_	_	_	_	_
 3	dich	dich	PRF	PRF	_	5	neg	_	_	_	_	_	_	_
-4-1	aus	ausruhen	VVINF	VVINF	_	5	dobj	_	_	_	_	_	p.`	p.`
-4-2	ruhen	ausruhen	VVINF	VVINF	_	5	dobj	_	_	_	_	_	_	_
+4	ausruhen	ausruhen	VVINF	VVINF	_	5	dobj	_	_	_	_	_	`	`
 5	willst	willst	VMFIN	VMFIN	_	7	advcl	_	_	_	_	_	_	_
 6	,	,	$,	$,	_	7	punct	_	_	_	_	_	_	_
 7	läufst	läufst	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
@@ -11507,8 +11452,7 @@
 8	mir	mir	PPER	PPER	_	10	iobj	_	_	_	_	mir	p.Experiencer	p.Beneficiary
 9	nicht	nicht	PTKNEG	PTKNEG	_	10	neg	_	_	_	_	_	_	_
 10	lächerlich	lächerlich	ADJD	ADJD	_	5	acl	_	_	_	_	_	_	_
-11-1	vor	vorkommt	VVFIN	VVFIN	_	10	cop	_	_	_	_	_	p.`	p.`
-11-2	kommt	vorkommt	VVFIN	VVFIN	_	10	cop	_	_	_	_	_	_	_
+11	vorkommt	vorkommt	VVFIN	VVFIN	_	10	cop	_	_	_	_	_	`	`
 12	.	.	$.	$.	_	5	punct	_	_	_	_	_	_	_
 														
 # text = Vielleicht weil er sich nicht nur mit sich selbst beschäftigt . ''														
@@ -11595,8 +11539,7 @@
 22	in	in	APPR	APPR	_	24	case	_	_	_	_	in	p.Duration	p.Duration
 23	vierundzwanzig	vierundzwanzig	CARD	CARD	_	24	nummod	_	_	_	_	_	_	_
 24	Stunden	stunden	NOUN	NN	Number=Sing	25	nmod	_	_	_	_	_	_	_
-25-1	nach	nachtrauerte	VVFIN	VVFIN	_	8	ccomp	_	_	_	_	_	p.Manner	p.Direction
-25-2	trauerte	nachtrauerte	VVFIN	VVFIN	_	8	ccomp	_	_	_	_	_	_	_
+25	nachtrauerte	nachtrauerte	VVFIN	VVFIN	_	8	ccomp	_	_	_	_	_	p.Manner	p.Direction
 26	.	.	$.	$.	_	8	punct	_	_	_	_	_	_	_
 														
 # text = ##														
@@ -12249,8 +12192,7 @@
 18	Steine	steine	NOUN	NN	Number=Sing	21	dobj	_	_	_	_	_	_	_
 19	von	von	APPR	APPR	_	20	case	_	_	_	_	von	p.Source	p.Source
 20	dort	dort	ADV	ADV	_	21	advmod	_	_	_	_	_	_	_
-21-1	mit	mitzubringen	VVIZU	VVIZU	_	13	xcomp	_	_	_	_	_	p.Accompanier	p.Accompanier
-21-2	zubringen	mitzubringen	VVIZU	VVIZU	_	13	xcomp	_	_	_	_	_	_	_
+21	mitzubringen	mitzubringen	VVIZU	VVIZU	_	13	xcomp	_	_	_	_	_	p.Accompanier	p.Accompanier
 22	.	.	$.	$.	_	1	punct	_	_	_	_	_	_	_
 23	''	''	VVFIN	VVFIN	_	1	punct	_	_	_	_	_	_	_
 														
@@ -12550,8 +12492,7 @@
 8	ausbrechen	ausbrechen	ADV	ADV	_	0	root	_	_	_	_	_	_	_
 9	''	''	VVINF	VVINF	_	8	punct	_	_	_	_	_	_	_
 10	,	,	$,	$,	_	8	punct	_	_	_	_	_	_	_
-11-1	unter	unterbrach	VVFIN	VVFIN	_	8	parataxis	_	_	_	_	_	p.`	p.`
-11-2	brach	unterbrach	VVFIN	VVFIN	_	8	parataxis	_	_	_	_	_	_	_
+11	unterbrach	unterbrach	VVFIN	VVFIN	_	8	parataxis	_	_	_	_	_	`	`
 12	ihn	ihn	PPER	PPER	_	11	dobj	_	_	_	_	_	_	_
 13	der	der	ART	ART	_	15	det	_	_	_	_	_	_	_
 14	kleine	kleine	ADJA	ADJA	_	15	amod	_	_	_	_	_	_	_
@@ -12633,8 +12574,7 @@
 9	von	von	APPR	APPR	_	11	case	_	_	_	_	von	p.Theme	p.Theme
 10	einer	einer	ART	ART	_	11	det	_	_	_	_	_	_	_
 11	Frage	frage	NOUN	NN	Number=Sing	12	nmod	_	_	_	_	_	_	_
-12-1	ab	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	p.Direction	p.Direction
-12-2	ließ	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	_	_
+12	abließ	abließ	VVFIN	VVFIN	_	5	acl	_	_	_	_	_	p.Direction	p.Direction
 13	,	,	$,	$,	_	12	punct	_	_	_	_	_	_	_
 14	die	die	PRELS	PRELS	_	17	dobj	_	_	_	_	_	_	_
 15	er	er	PPER	PPER	_	17	nsubj	_	_	_	_	_	_	_
@@ -13185,8 +13125,7 @@
 8	kleinsten	kleinsten	ADJA	ADJA	_	10	amod	_	_	_	_	_	_	_
 9	pazifischen	pazifischen	ADJA	ADJA	_	10	amod	_	_	_	_	_	_	_
 10	Insel	insel	NOUN	NN	Number=Sing	11	nmod	_	_	_	_	_	_	_
-11-1	unter	unterkriegen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-11-2	kriegen	unterkriegen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+11	unterkriegen	unterkriegen	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 12	.	.	$.	$.	_	11	punct	_	_	_	_	_	_	_
 														
 # text = Die Erwachsenen werden euch das natürlich nicht abnehmen .														
@@ -13197,8 +13136,7 @@
 5	das	das	PDS	PDS	_	8	dobj	_	_	_	_	_	_	_
 6	natürlich	natürlich	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
 7	nicht	nicht	PTKNEG	PTKNEG	_	8	neg	_	_	_	_	_	_	_
-8-1	ab	abnehmen	VVINF	VVINF	_	4	acl	_	_	_	_	_	p.`	p.`
-8-2	nehmen	abnehmen	VVINF	VVINF	_	4	acl	_	_	_	_	_	_	_
+8	abnehmen	abnehmen	VVINF	VVINF	_	4	acl	_	_	_	_	_	`	`
 9	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = Sie glauben , sie nähmen sehr viel Platz ein .														
@@ -13274,8 +13212,7 @@
 1	Auf	auf	APPR	APPR	_	3	case	_	_	_	_	auf	p.Locus	p.Locus
 2	der	der	ART	ART	_	3	det	_	_	_	_	_	_	_
 3	Erde	erde	NOUN	NN	Number=Sing	9	nmod	_	_	_	_	_	_	_
-4-1	an	angekommen	VVPP	VVPP	_	3	appos	_	_	_	_	_	p.`	p.`
-4-2	gekommen	angekommen	VVPP	VVPP	_	3	appos	_	_	_	_	_	_	_
+4	angekommen	angekommen	VVPP	VVPP	_	3	appos	_	_	_	_	_	`	`
 5	war	war	VAFIN	VAFIN	_	9	cop	_	_	_	_	_	_	_
 6	der	der	ART	ART	_	8	det	_	_	_	_	_	_	_
 7	kleine	kleine	ADJA	ADJA	_	8	amod	_	_	_	_	_	_	_
@@ -13726,8 +13663,7 @@
 6	ich	ich	PPER	PPER	_	7	nsubj	_	_	_	_	_	_	_
 7	berühre	berühre	VVFIN	VVFIN	_	3	acl	_	_	_	_	_	_	_
 8	,	,	$,	$,	_	3	punct	_	_	_	_	_	_	_
-9-1	über	übergebe	VVFIN	VVFIN	_	3	appos	_	_	_	_	_	p.`	p.`
-9-2	gebe	übergebe	VVFIN	VVFIN	_	3	appos	_	_	_	_	_	_	_
+9	übergebe	übergebe	VVFIN	VVFIN	_	3	appos	_	_	_	_	_	`	`
 10	ich	ich	PPER	PPER	_	9	dobj	_	_	_	_	_	_	_
 11	der	der	ART	ART	_	12	det	_	_	_	_	_	_	_
 12	Erde	erde	NOUN	NN	Number=Sing	10	det	_	_	_	_	_	_	_
@@ -14475,8 +14411,7 @@
 10	die	die	PRELS	PRELS	_	13	nsubj	_	_	_	_	_	_	_
 11	alle	alle	PIS	PIS	_	13	dobj	_	_	_	_	_	_	_
 12	gleich	gleich	ADV	ADV	_	13	advmod	_	_	_	_	_	_	_
-13-1	aus	aussahen	VVFIN	VVFIN	_	6	acl	_	_	_	_	_	p.`	p.`
-13-2	sahen	aussahen	VVFIN	VVFIN	_	6	acl	_	_	_	_	_	_	_
+13	aussahen	aussahen	VVFIN	VVFIN	_	6	acl	_	_	_	_	_	`	`
 14	,	,	$,	$,	_	13	punct	_	_	_	_	_	_	_
 15	in	in	APPR	APPR	_	18	case	_	_	_	_	in	p.Locus	p.Locus
 16	einem	einem	ART	ART	_	18	det	_	_	_	_	_	_	_
@@ -14508,8 +14443,7 @@
 21	schrecklich	schrecklich	ADJD	ADJD	_	22	advmod	_	_	_	_	_	_	_
 22	husten	husten	VVPP	VVPP	_	8	parataxis	_	_	_	_	_	_	_
 23	und	und	KON	KON	_	22	cc	_	_	_	_	_	_	_
-24-1	vor	vorgeben	ADV	ADV	_	26	advmod	_	_	_	_	_	p.Circumstance	p.Circumstance
-24-2	geben	vorgeben	ADV	ADV	_	26	advmod	_	_	_	_	_	_	_
+24	vorgeben	vorgeben	ADV	ADV	_	26	advmod	_	_	_	_	_	p.Circumstance	p.Circumstance
 25	zu	zu	PTKZU	PTKZU	_	26	aux	_	_	_	_	_	_	_
 26	sterben	sterben	VVINF	VVINF	_	22	conj	_	_	_	_	_	_	_
 27	,	,	$,	$,	_	22	punct	_	_	_	_	_	_	_
@@ -14805,8 +14739,7 @@
 														
 # text = Er überlegte und fügte an : `` Was bedeutet , zähmenʻ ? ''														
 1	Er	er	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
-2-1	über	überlegte	VVFIN	VVFIN	_	0	root	_	_	_	_	_	p.`	p.`
-2-2	legte	überlegte	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
+2	überlegte	überlegte	VVFIN	VVFIN	_	0	root	_	_	_	_	_	`	`
 3	und	und	KON	KON	_	2	cc	_	_	_	_	_	_	_
 4	fügte	fügte	VVFIN	VVFIN	_	2	conj	_	_	_	_	_	_	_
 5	an	an	PTKVZ	PTKVZ	_	4	mark	_	_	_	_	an	p.Accompanier	p.Goal
@@ -14996,8 +14929,7 @@
 9	Junge	junge	NOUN	NN	Number=Sing	5	nmod	_	_	_	_	_	_	_
 10	,	,	$,	$,	_	9	punct	_	_	_	_	_	_	_
 11	der	der	PRELS	PRELS	_	12	det	_	_	_	_	_	_	_
-12-1	aus	aussieht	VVFIN	VVFIN	_	9	conj	_	_	_	_	_	p.`	p.`
-12-2	sieht	aussieht	VVFIN	VVFIN	_	9	conj	_	_	_	_	_	_	_
+12	aussieht	aussieht	VVFIN	VVFIN	_	9	conj	_	_	_	_	_	`	`
 13	wie	wie	KOKOM	KOKOM	_	14	advmod	_	_	_	_	wie	p.ComparisonRef	p.ComparisonRef
 14	tausend	tausend	CARD	CARD	_	12	acl	_	_	_	_	_	_	_
 15	andere	andere	ADJA	ADJA	_	17	det	_	_	_	_	_	_	_
@@ -15032,8 +14964,7 @@
 7	Fuchs	fuchs	NE	NE	_	4	appos	_	_	_	_	_	_	_
 8	,	,	$,	$,	_	7	punct	_	_	_	_	_	_	_
 9	der	der	PRELS	PRELS	_	10	det	_	_	_	_	_	_	_
-10-1	aus	aussieht	VVFIN	VVFIN	_	7	appos	_	_	_	_	_	p.`	p.`
-10-2	sieht	aussieht	VVFIN	VVFIN	_	7	appos	_	_	_	_	_	_	_
+10	aussieht	aussieht	VVFIN	VVFIN	_	7	appos	_	_	_	_	_	`	`
 11	wie	wie	KOKOM	KOKOM	_	14	case	_	_	_	_	wie	p.ComparisonRef	p.ComparisonRef
 12	hunderttausend	hunderttausend	CARD	CARD	_	14	amod	_	_	_	_	_	_	_
 13	andere	andere	ADJA	ADJA	_	14	amod	_	_	_	_	_	_	_
@@ -15321,8 +15252,7 @@
 11	von	von	APPR	APPR	_	14	aux	_	_	_	_	von	p.ComparisonRef	p.Source
 12	allen	allen	PIDAT	PIDAT	_	14	nsubj	_	_	_	_	_	_	_
 13	anderen	anderen	ADJA	ADJA	_	14	dobj	_	_	_	_	_	_	_
-14-1	unter	unterscheidet	VVFIN	VVFIN	_	7	acl	_	_	_	_	_	p.`	p.`
-14-2	scheidet	unterscheidet	VVFIN	VVFIN	_	7	acl	_	_	_	_	_	_	_
+14	unterscheidet	unterscheidet	VVFIN	VVFIN	_	7	acl	_	_	_	_	_	`	`
 15	.	.	$.	$.	_	7	punct	_	_	_	_	_	_	_
 														
 # text = Die anderen Schritte werden mich unter die Erde jagen .														
@@ -15540,9 +15470,7 @@
 7	,	,	$,	$,	_	3	punct	_	_	_	_	_	_	_
 8	um	um	KOUI	KOUI	_	10	mark	_	_	1:1	_	um zu	p.Purpose	p.Purpose
 9	etwas	etwas	PIS	PIS	_	10	dobj	_	_	_	_	_	_	_
-10-1	kennen	kennenzulernen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
-10-2	zu	kennenzulernen	VVIZU	VVIZU	_	3	advcl	_	_	1:2	_	_	_	_
-10-3	lernen	kennenzulernen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
+10	kennenzulernen	kennenzulernen	VVIZU	VVIZU	_	3	advcl	_	_	_	_	_	_	_
 11	.	.	$.	$.	_	3	punct	_	_	_	_	_	_	_
 														
 # text = Sie kaufen die schon fertigen Dinge in dem Laden .														
@@ -15642,8 +15570,7 @@
 4	aus	aus	APPR	APPR	_	6	case	_	_	_	_	aus	p.Manner	p.Source
 5	dem	dem	ART	ART	_	6	det	_	_	_	_	_	_	_
 6	Augenwinkel	augenwinkel	NOUN	NN	Number=Sing	7	nmod	_	_	_	_	_	_	_
-7-1	an	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-7-2	schauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+7	anschauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 8	und	und	KON	KON	_	7	cc	_	_	_	_	_	_	_
 9	du	du	PPER	PPER	_	12	aux	_	_	_	_	_	_	_
 10	wirst	wirst	VAFIN	VAFIN	_	12	advmod	_	_	_	_	_	_	_
@@ -16133,8 +16060,7 @@
 7	einmal	einmal	ADV	ADV	_	4	advmod	_	_	_	_	_	_	_
 8	die	die	ART	ART	_	9	det	_	_	_	_	_	_	_
 9	Rosen	rosen	NOUN	NN	Number=Sing	10	nsubj	_	_	_	_	_	_	_
-10-1	an	ansehen	VVINF	VVINF	_	4	xcomp	_	_	_	_	_	p.`	p.`
-10-2	sehen	ansehen	VVINF	VVINF	_	4	xcomp	_	_	_	_	_	_	_
+10	ansehen	ansehen	VVINF	VVINF	_	4	xcomp	_	_	_	_	_	`	`
 11	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = - `` Ihr seht meiner Rose überhaupt nicht ähnlich , ihr taugt rein gar nichts '' , sagte er ihnen .														
@@ -16335,8 +16261,7 @@
 6	deren	deren	PRELAT	PRELAT	_	7	nmod:poss	_	_	_	_	deren	p.Gestalt	p.Gestalt
 7	Raupen	raupen	NOUN	NN	Number=Sing	9	dobj	_	_	_	_	_	_	_
 8	ich	ich	PPER	PPER	_	9	nsubj	_	_	_	_	_	_	_
-9-1	auf	aufgelesen	VVPP	VVPP	_	4	acl	_	_	_	_	_	p.`	p.`
-9-2	gelesen	aufgelesen	VVPP	VVPP	_	4	acl	_	_	_	_	_	_	_
+9	aufgelesen	aufgelesen	VVPP	VVPP	_	4	acl	_	_	_	_	_	`	`
 10	habe	habe	VAFIN	VAFIN	_	9	aux	_	_	_	_	_	_	_
 11	(	(	NOUN	NN	Number=Sing	9	punct	_	_	_	_	_	_	_
 12	bis	bis	APPR	APPR	_	11	case	_	_	1:1	_	bis auf	p.PartPortion	p.Extent
@@ -16796,8 +16721,7 @@
 1	``	``	ADV	ADV	_	4	punct	_	_	_	_	_	_	_
 2	Sie	sie	PPER	PPER	_	4	nsubjpass	_	_	_	_	_	_	_
 3	wurden	wurden	VAFIN	VAFIN	_	4	auxpass	_	_	_	_	_	_	_
-4-1	aus	ausgetauscht	VVPP	VVPP	_	0	root	_	_	_	_	_	p.`	p.`
-4-2	getauscht	ausgetauscht	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+4	ausgetauscht	ausgetauscht	VVPP	VVPP	_	0	root	_	_	_	_	_	`	`
 5	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 6	''	''	VVPP	VVPP	_	4	punct	_	_	_	_	_	_	_
 														
@@ -17166,8 +17090,7 @@
 19	von	von	APPR	APPR	_	21	case	_	_	_	_	von	p.Topic	p.Topic
 20	dem	dem	ART	ART	_	21	det	_	_	_	_	_	_	_
 21	Pillenhändler	pillenhändler	NOUN	NN	Number=Sing	18	nmod	_	_	_	_	_	_	_
-22-1	an	angehört	VVPP	VVPP	_	11	conj	_	_	_	_	_	p.`	p.`
-22-2	gehört	angehört	VVPP	VVPP	_	11	conj	_	_	_	_	_	_	_
+22	angehört	angehört	VVPP	VVPP	_	11	conj	_	_	_	_	_	`	`
 23	,	,	$,	$,	_	4	punct	_	_	_	_	_	_	_
 24	als	als	KOUS	KOUS	_	31	mark	_	_	_	_	als	p.Time	p.Time
 25	ich	ich	PPER	PPER	_	31	nsubj	_	_	_	_	_	_	_
@@ -17534,8 +17457,7 @@
 15	man	man	PIS	PIS	_	18	nsubj	_	_	_	_	_	_	_
 16	ihn	ihn	PPER	PPER	_	18	dobj	_	_	_	_	_	_	_
 17	nicht	nicht	PTKNEG	PTKNEG	_	18	neg	_	_	_	_	_	_	_
-18-1	aus	ausfragen	VVINF	VVINF	_	11	ccomp	_	_	_	_	_	p.`	p.`
-18-2	fragen	ausfragen	VVINF	VVINF	_	11	ccomp	_	_	_	_	_	_	_
+18	ausfragen	ausfragen	VVINF	VVINF	_	11	ccomp	_	_	_	_	_	`	`
 19	sollte	sollte	VMFIN	VMFIN	_	18	aux	_	_	_	_	_	_	_
 20	.	.	$.	$.	_	2	punct	_	_	_	_	_	_	_
 														
@@ -17819,8 +17741,7 @@
 17	was	was	PWS	PWS	_	20	nsubj	_	_	_	_	_	_	_
 18	ihre	ihre	PPOSAT	PPOSAT	_	19	det	_	_	_	_	ihre	p.Gestalt	p.Gestalt
 19	Schönheit	schönheit	NOUN	NN	Number=Sing	20	dobj	_	_	_	_	_	_	_
-20-1	aus	ausmacht	VVFIN	VVFIN	_	8	acl	_	_	_	_	_	p.`	p.`
-20-2	macht	ausmacht	VVFIN	VVFIN	_	8	acl	_	_	_	_	_	_	_
+20	ausmacht	ausmacht	VVFIN	VVFIN	_	8	acl	_	_	_	_	_	`	`
 21	,	,	$,	$,	_	8	punct	_	_	_	_	_	_	_
 22	ist	ist	VAFIN	VAFIN	_	23	cop	_	_	_	_	_	_	_
 23	unsichtbar	unsichtbar	ADJD	ADJD	_	0	root	_	_	_	_	_	_	_
@@ -17958,8 +17879,7 @@
 10	ein	ein	ART	ART	_	12	det	_	_	_	_	_	_	_
 11	halbes	halbes	ADJA	ADJA	_	12	amod	_	_	_	_	_	_	_
 12	Lächeln	lächeln	NOUN	NN	Number=Sing	13	dobj	_	_	_	_	_	_	_
-13-1	an	andeuteten	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	p.`	p.`
-13-2	deuteten	andeuteten	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	_	_
+13	andeuteten	andeuteten	VVFIN	VVFIN	_	15	advcl	_	_	_	_	_	`	`
 14	,	,	$,	$,	_	15	punct	_	_	_	_	_	_	_
 15	sagte	sagte	VVFIN	VVFIN	_	4	parataxis	_	_	_	_	_	_	_
 16	ich	ich	PPER	PPER	_	15	nsubj	_	_	_	_	_	_	_
@@ -18027,8 +17947,7 @@
 9	Windstoß	windstoß	NOUN	NN	Number=Sing	12	nmod	_	_	_	_	_	_	_
 10	kann	kann	VMFIN	VMFIN	_	12	aux	_	_	_	_	_	_	_
 11	sie	sie	PPER	PPER	_	12	nsubj	_	_	_	_	_	_	_
-12-1	aus	auslöschen	VVINF	VVINF	_	5	ccomp	_	_	_	_	_	p.`	p.`
-12-2	löschen	auslöschen	VVINF	VVINF	_	5	ccomp	_	_	_	_	_	_	_
+12	auslöschen	auslöschen	VVINF	VVINF	_	5	ccomp	_	_	_	_	_	`	`
 13	.	.	$.	$.	_	5	punct	_	_	_	_	_	_	_
 														
 # text = Und während ich so lief , entdeckte ich bei Tagesanbruch den Brunnen .														
@@ -18260,8 +18179,7 @@
 7	sich	sich	PRF	PRF	_	10	dobj	_	_	_	_	_	_	_
 8	zu	zu	PTKA	PTKA	_	10	aux	_	_	_	_	_	_	_
 9	sehr	sehr	ADV	ADV	_	10	advmod	_	_	_	_	_	_	_
-10-1	an	anstrengt	VVFIN	VVFIN	_	0	root	_	_	_	_	_	p.`	p.`
-10-2	strengt	anstrengt	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
+10	anstrengt	anstrengt	VVFIN	VVFIN	_	0	root	_	_	_	_	_	`	`
 11	:	:	$.	$.	_	10	punct	_	_	_	_	_	_	_
 														
 # text = - `` Lass mich das machen '' , sagte ich , `` das ist zu schwer für dich . ''														
@@ -18304,8 +18222,7 @@
 2	stellte	stellte	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 3	ihn	ihn	PPER	PPER	_	2	dobj	_	_	_	_	_	_	_
 4	ganz	ganz	ADV	ADV	_	5	advmod	_	_	_	_	_	_	_
-5-1	auf	aufrecht	ADJD	ADJD	_	2	xcomp	_	_	_	_	_	p.`	p.`
-5-2	recht	aufrecht	ADJD	ADJD	_	2	xcomp	_	_	_	_	_	_	_
+5	aufrecht	aufrecht	ADJD	ADJD	_	2	xcomp	_	_	_	_	_	`	`
 6	hin	hin	PTKVZ	PTKVZ	_	2	mark	_	_	_	_	_	_	_
 7	.	.	$.	$.	_	2	punct	_	_	_	_	_	_	_
 														
@@ -19573,8 +19490,7 @@
 4	seinen	seinen	PPOSAT	PPOSAT	_	6	det	_	_	_	_	seinen	p.Possessor	p.Possessor
 5	goldenen	goldenen	ADJA	ADJA	_	6	amod	_	_	_	_	_	_	_
 6	Schal	schal	NOUN	NN	Number=Sing	7	dobj	_	_	_	_	_	_	_
-7-1	ab	abgebunden	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Possession	p.Source
-7-2	gebunden	abgebunden	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+7	abgebunden	abgebunden	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Possession	p.Source
 8	.	.	$.	$.	_	7	punct	_	_	_	_	_	_	_
 														
 # text = Ich habe ihm Wasser an die Schläfen getupft und ihm zu trinken gegeben .														
@@ -20229,8 +20145,7 @@
 4	alle	alle	PIDAT	PIDAT	_	5	det	_	_	_	_	_	_	_
 5	Sterne	sterne	NOUN	NN	Number=Sing	7	dobj	_	_	_	_	_	_	_
 6	gerne	gerne	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
-7-1	an	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Direction	p.Direction
-7-2	schauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+7	anschauen	anschauen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Direction	p.Direction
 8	...	...	$[	$[	_	7	punct	_	_	_	_	_	_	_
 9	sie	sie	PPER	PPER	_	14	dobj	_	_	_	_	_	_	_
 10	alle	alle	PIS	PIS	_	14	nsubj	_	_	_	_	_	_	_
@@ -20668,8 +20583,7 @@
 3	Es	es	PPER	PPER	_	6	nsubj	_	_	_	_	_	_	_
 4	wird	wird	VAFIN	VAFIN	_	6	aux	_	_	_	_	_	_	_
 5	so	so	ADV	ADV	_	6	advmod	_	_	_	_	_	_	_
-6-1	aus	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-6-2	sehen	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+6	aussehen	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 7	,	,	$,	$,	_	6	punct	_	_	_	_	_	_	_
 8	als	als	KOUS	KOUS	_	11	mark	_	_	_	_	als	p.ComparisonRef	p.ComparisonRef
 9	hätte	hätte	VAFIN	VAFIN	_	11	aux	_	_	_	_	_	_	_
@@ -20681,8 +20595,7 @@
 15	ein	ein	ART	ART	_	16	det	_	_	_	_	_	_	_
 16	bisschen	bisschen	NOUN	NN	Number=Sing	18	nsubjpass	_	_	_	_	_	_	_
 17	so	so	ADV	ADV	_	18	advmod	_	_	_	_	_	_	_
-18-1	aus	aussehen	VVINF	VVINF	_	11	parataxis	_	_	_	_	_	p.`	p.`
-18-2	sehen	aussehen	VVINF	VVINF	_	11	parataxis	_	_	_	_	_	_	_
+18	aussehen	aussehen	VVINF	VVINF	_	11	parataxis	_	_	_	_	_	`	`
 19	,	,	$,	$,	_	18	punct	_	_	_	_	_	_	_
 20	als	als	APPR	APPR	_	21	case	_	_	_	_	als	p.ComparisonRef	p.ComparisonRef
 21	müsste	müsste	ADJA	ADJA	_	23	nmod	_	_	_	_	_	_	_
@@ -20701,8 +20614,7 @@
 2	dir	dir	PPER	PPER	_	0	root	_	_	_	_	dir	p.`	p.`
 3	das	das	PDS	PDS	_	5	dobj	_	_	_	_	_	_	_
 4	nicht	nicht	PTKNEG	PTKNEG	_	5	neg	_	_	_	_	_	_	_
-5-1	an	anschauen	VVINF	VVINF	_	2	acl	_	_	_	_	_	p.`	p.`
-5-2	schauen	anschauen	VVINF	VVINF	_	2	acl	_	_	_	_	_	_	_
+5	anschauen	anschauen	VVINF	VVINF	_	2	acl	_	_	_	_	_	`	`
 6	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 7	das	das	PDS	PDS	_	10	nsubj	_	_	_	_	_	_	_
 8	ist	ist	VAFIN	VAFIN	_	10	cop	_	_	_	_	_	_	_
@@ -20895,8 +20807,7 @@
 # text = Es wird aussehen , als sei ich tot ... aber das wird nicht stimmen ... ''														
 1	Es	es	PPER	PPER	_	3	expl	_	_	_	_	_	_	_
 2	wird	wird	VAFIN	VAFIN	_	3	auxpass	_	_	_	_	_	_	_
-3-1	aus	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.`	p.`
-3-2	sehen	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+3	aussehen	aussehen	VVINF	VVINF	_	0	root	_	_	_	_	_	`	`
 4	,	,	$,	$,	_	3	punct	_	_	_	_	_	_	_
 5	als	als	KOUS	KOUS	_	8	case	_	_	_	_	als	p.ComparisonRef	p.ComparisonRef
 6	sei	sei	VAFIN	VAFIN	_	8	cop	_	_	_	_	_	_	_
@@ -20937,8 +20848,7 @@
 4	Körper	körper	NOUN	NN	Number=Sing	7	dobj	_	_	_	_	_	_	_
 5	hier	hier	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
 6	nicht	nicht	PTKNEG	PTKNEG	_	7	neg	_	_	_	_	_	_	_
-7-1	mit	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Accompanier	p.Accompanier
-7-2	nehmen	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+7	mitnehmen	mitnehmen	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Accompanier	p.Accompanier
 8	.	.	$.	$.	_	7	punct	_	_	_	_	_	_	_
 														
 # text = Er ist zu schwer ... ''														
@@ -21406,8 +21316,7 @@
 6	nachts	nachts	ADV	ADV	_	9	advmod	_	_	_	_	_	_	_
 7	den	den	ART	ART	_	8	det	_	_	_	_	_	_	_
 8	Sternen	sternen	NOUN	NN	Number=Sing	9	dobj	_	_	_	_	_	_	_
-9-1	zu	zuzuhören	VVINF	VVINF	_	3	xcomp	_	_	_	_	_	p.Stimulus	p.Goal
-9-2	zuhören	zuzuhören	VVINF	VVINF	_	3	xcomp	_	_	_	_	_	_	_
+9	zuzuhören	zuzuhören	VVINF	VVINF	_	3	xcomp	_	_	_	_	_	p.Stimulus	p.Goal
 10	.	.	$.	$.	_	3	punct	_	_	_	_	_	_	_
 														
 # text = Sie sind wie fünfhundert Millionen Glöckchen ...														
@@ -21455,8 +21364,7 @@
 3	sein	sein	PPOSAT	PPOSAT	_	4	det	_	_	_	_	sein	p.Possessor	p.Possessor
 4	Schaf	schaf	NOUN	NN	Number=Sing	6	dobj	_	_	_	_	_	_	_
 5	niemals	niemals	ADV	ADV	_	6	advmod	_	_	_	_	_	_	_
-6-1	an	anbinden	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Goal
-6-2	binden	anbinden	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+6	anbinden	anbinden	VVINF	VVINF	_	0	root	_	_	_	_	_	p.Goal	p.Goal
 7	können	können	VMINF	VMINF	_	6	aux	_	_	_	_	_	_	_
 8	.	.	$.	$.	_	6	punct	_	_	_	_	_	_	_
 														
@@ -21564,8 +21472,7 @@
 12	ist	ist	VAFIN	VAFIN	_	15	cop	_	_	_	_	_	_	_
 13	nachts	nachts	ADV	ADV	_	15	advmod	_	_	_	_	_	_	_
 14	lautlos	lautlos	ADJD	ADJD	_	15	advmod	_	_	_	_	_	_	_
-15-1	aus	ausgebrochen	VVPP	VVPP	_	8	conj	_	_	_	_	_	p.`	p.`
-15-2	gebrochen	ausgebrochen	VVPP	VVPP	_	8	conj	_	_	_	_	_	_	_
+15	ausgebrochen	ausgebrochen	VVPP	VVPP	_	8	conj	_	_	_	_	_	`	`
 16	...	...	$[	$[	_	22	punct	_	_	_	_	_	_	_
 17	Dann	dann	ADV	ADV	_	22	advmod	_	_	_	_	_	_	_
 18	werden	werden	VAFIN	VAFIN	_	22	auxpass	_	_	_	_	_	_	_
@@ -21822,8 +21729,7 @@
 23	wenn	wenn	KOUS	KOUS	_	26	mark	_	_	_	_	_	_	_
 24	man	man	PIS	PIS	_	26	nsubj	_	_	_	_	_	_	_
 25	es	es	PPER	PPER	_	26	dobj	_	_	_	_	_	_	_
-26-1	aus	ausfragt	VVFIN	VVFIN	_	29	advcl	_	_	_	_	_	p.Manner	p.Goal
-26-2	fragt	ausfragt	VVFIN	VVFIN	_	29	advcl	_	_	_	_	_	_	_
+26	ausfragt	ausfragt	VVFIN	VVFIN	_	29	advcl	_	_	_	_	_	p.Manner	p.Goal
 27	,	,	$,	$,	_	29	punct	_	_	_	_	_	_	_
 28	dann	dann	ADV	ADV	_	29	advmod	_	_	_	_	_	_	_
 29	wisst	wisst	VVFIN	VVFIN	_	21	ccomp	_	_	_	_	_	_	_
