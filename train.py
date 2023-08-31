@@ -107,7 +107,7 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
-        weights2 = list(self.inv_freqs["lt"].values())
+        weights2 = [.0001] +list(self.inv_freqs["lt"].values())
         weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
         weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
 
@@ -116,13 +116,15 @@ class MyTrainer(Trainer):
 
         weights = [float(w) for w  in weights]
 
-        weights = torch.tensor(weights).to("cuda")
+        weights2 = [float(w) for w in weights2]
 
+        weights = torch.tensor(weights).to("cuda")
+        weights2 = torch.tensor(weights2).to("cuda")
 
 
         labels = labels.view(-1) #batch_size * sequence length
 
-        loss_fn = CrossEntropyLoss(weight=weights)
+        loss_fn = CrossEntropyLoss(weight=weights2)
         loss = loss_fn(logits, labels)
 
         if return_outputs:
