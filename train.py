@@ -82,9 +82,10 @@ def compute_metrics(p, id_to_label):
 
 
 #Custom trainer which is used for custom weighted loss function
-class MyTrainer(Trainer, inv_freqs):
+class MyTrainer(Trainer):
 
-    self.inv_freqs = inv_freqs
+    def add_freqs(self, inv_freqs):
+        self.inv_freqs = inv_freqs
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """
@@ -200,9 +201,10 @@ def train(
         eval_dataset=data[:len(data) // 5],
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=lambda x: compute_metrics(x, id_to_label),
-        inv_freqs = inv_freqs
+        compute_metrics=lambda x: compute_metrics(x, id_to_label)
     )
+
+    trainer.add_freqs(inv_freqs)
 
     # train
     trainer.train()
