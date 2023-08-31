@@ -1,5 +1,5 @@
 from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer, AutoTokenizer, DataCollatorForTokenClassification
-from load_data import tokenize_and_align
+from load_data import tokenize_and_align, get_ss_frequencies
 import numpy as np
 import evaluate
 import random
@@ -17,6 +17,8 @@ seqeval = evaluate.load("seqeval")
 def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None):
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
+
+    inv_freqs = get_ss_frequencies(res)
 
     #if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
@@ -53,7 +55,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
 
     print(label_to_id)
     
-    return res2, label_to_id, id_to_label
+    return res2, label_to_id, id_to_label, inv_freqs
 
 def compute_metrics(p, id_to_label):
     """Compute metrics for evaluation."""
@@ -80,7 +82,9 @@ def compute_metrics(p, id_to_label):
 
 
 #Custom trainer which is used for custom weighted loss function
-class MyTrainer(Trainer):
+class MyTrainer(Trainer, inv_freqs):
+
+    self.inv_freqs = inv_freqs
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """
@@ -101,9 +105,13 @@ class MyTrainer(Trainer):
         #below is just some random experiments with changing the weights to see if there was significant effect
 
         weights = [1] * num_labels
+
+        weights2 = list(self.inv_freqs["lt"].values())
         weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
         weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
 
+        print(len(weights), len(weights2))
+        assert len(weights2) == len(weights)
 
         weights = [float(w) for w  in weights]
 
@@ -140,13 +148,13 @@ def train(
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
+    data, label_to_id, id_to_label, inv_freqs = load_data(f"data/{file}", tokenizer)
 
     if extra_file:
-        extra_data, _, _ = load_data(f"data/{extra_file}", tokenizer)
+        extra_data, _, _, _ = load_data(f"data/{extra_file}", tokenizer)
 
     if test_file:
-        test_data, _, _ = load_data(f"data/{test_file}", tokenizer)
+        test_data, _, _, _ = load_data(f"data/{test_file}", tokenizer)
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
@@ -185,7 +193,7 @@ def train(
         train_dataset = data
         eval_dataset = test_data
 
-    trainer = Trainer(
+    trainer = MyTrainer(
         model=model,
         args=training_args,
         train_dataset=data[len(data) // 5:],
@@ -193,6 +201,7 @@ def train(
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=lambda x: compute_metrics(x, id_to_label),
+        inv_freqs = inv_freqs
     )
 
     # train

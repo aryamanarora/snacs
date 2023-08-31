@@ -90,9 +90,9 @@ def tokenize_and_align(
 def get_ss_frequencies(res: list):
     """prints out the relative frequencies of each SS, SS2 and lextag after a file has been tokenized and aligned.
     The relative frequencies can be used for weighting a loss function during training. """
-
+    print("STARTING FREQUENCIES")
     inv_freqs = {}
-    freqs = defaultdict(lambda x: defaultdict(int))
+    freqs = defaultdict(lambda: defaultdict(int))
 
     for tokens, mask, labels in res:
 
@@ -125,15 +125,23 @@ def get_ss_frequencies(res: list):
         for tag in freqs[thing]:
             inv_freqs[thing][tag] = 1 / freqs[thing][tag]
 
+    # for k in freqs:
+    #     print(k, freqs[k])
+    #     print("\n")
+    # 
+    # print("---------------\n")
+    # for k in inv_freqs:
+    #     print(k, inv_freqs[k])
     return inv_freqs
 
 
 
 def main():
-    for file in glob.glob("data/*.conllulex"):
+    for file in glob.glob("data/en-lp.conllulex"):
         print(file)
-        tokenizer = AutoTokenizer.from_pretrained("gpt2")
-        tokenize_and_align(file, tokenizer, verbose=True)
+        tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        res = tokenize_and_align(file, tokenizer, verbose=False)
+        inv_freqs = get_ss_frequencies(res)
 
 if __name__ == "__main__":
     main()
