@@ -8,6 +8,7 @@ import os
 from torch.nn import CrossEntropyLoss
 import torch
 import sys
+from collections import defaultdict
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -133,12 +134,16 @@ def train(
     epochs: int,
     weight_decay: float,
     freeze: bool,
-    test_file: str):
+    test_file: str,
+    extra_file: str):
     """Train model."""
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label = load_data(f"data/{file}", tokenizer)
+
+    if extra_file:
+        extra_data, _, _ = load_data(f"data/{extra_file}", tokenizer)
 
     if test_file:
         test_data, _, _ = load_data(f"data/{test_file}", tokenizer)
@@ -180,7 +185,7 @@ def train(
         train_dataset = data
         eval_dataset = test_data
 
-    trainer = MyTrainer(
+    trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=data[len(data) // 5:],
@@ -203,6 +208,7 @@ def main():
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--freeze", action="store_true")
     parser.add_argument("--test_file", type=str, default=None, help="If you want to test on a different file than training. Otherwise, splits the main file into train/eval splits.")
+    parser.add_argument("--extra_file", type=str, default=None, help="If you want to add an extra file to add more data during the fine-tuning stage. Evaluation is still only perfomed on the original file test split.")
     args = parser.parse_args()
 
     train(**vars(args))
