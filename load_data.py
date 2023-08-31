@@ -91,7 +91,7 @@ def get_ss_frequencies(res: list):
     """prints out the relative frequencies of each SS, SS2 and lextag after a file has been tokenized and aligned.
     The relative frequencies can be used for weighting a loss function during training. """
 
-    rel_freqs = {}
+    inv_freqs = {}
     freqs = defaultdict(lambda x: defaultdict(int))
 
     for tokens, mask, labels in res:
@@ -118,6 +118,14 @@ def get_ss_frequencies(res: list):
     total_lt = len(freqs["lt"].keys())
     total_ss = len(freqs["ss"].keys())
     total_ss = len(freqs["ss2"].keys())
+
+    #gotta populate the inverse frequencies using the frequencies
+    for thing in freqs: #thing is either lt, ss, or ss2
+        inv_freqs[thing] = {}
+        for tag in freqs[thing]:
+            inv_freqs[thing][tag] = 1 / freqs[thing][tag]
+
+    return inv_freqs
 
 
 
