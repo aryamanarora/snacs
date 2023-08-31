@@ -110,7 +110,7 @@ class MyTrainer(Trainer, inv_freqs):
         weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
         weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
 
-        print(len(weights), len(weights2))
+        print(len(weights), len(weights2), file=sys.stderr)
         assert len(weights2) == len(weights)
 
         weights = [float(w) for w  in weights]
