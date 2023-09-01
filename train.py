@@ -263,8 +263,8 @@ def train(
     trainer = MyTrainer(
         model=model,
         args=training_args,
-        train_dataset=data[len(data) // 5:],
-        eval_dataset=data[:len(data) // 5],
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=lambda x: compute_metrics(x, id_to_label)
