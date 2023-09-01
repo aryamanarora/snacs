@@ -28,24 +28,19 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         #need to combine frequencies of files to get the inverse freqs right
         old_freqs = freqs
         new_freqs = get_ss_frequencies(res)
-        print("new", new_freqs["lt"]["B-p.Duration-p.Gestalt"])
-        print("old", old_freqs["lt"]["B-p.Duration-p.Gestalt"])
+
         #make a new freqs to house combination of freqs
         freqs = {"lt": {}, "ss": {}, "ss2": {} }
         for tag_type in ["lt", "ss", "ss2"]:
             all_tags = list(set(list(old_freqs[tag_type].keys()) + list(new_freqs[tag_type].keys())))
-            if "B-p.Duration-p.Gestalt" in all_tags:
-                print("IT's here...")
+
             for tag in all_tags:
                 comb = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
-                if tag == "B-p.Duration-p.Gestalt":
-                    print("mathy", new_freqs[tag_type][tag], old_freqs[tag_type][tag], comb)
+
 
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
                     freqs[tag_type][tag] = comb
-                    if tag == "B-p.Duration-p.Gestalt":
-                        print("result", freqs[tag_type][tag])
 
 
 
@@ -88,7 +83,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     random.shuffle(res2)
 
     print(label_to_id)
-    print("result2", freqs["lt"]["B-p.Duration-p.Gestalt"])
+
     return res2, label_to_id, id_to_label, freqs
 
 def combine_datasets(file_list: list, train_only=False):
