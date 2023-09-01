@@ -22,6 +22,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     #potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
     if not freqs:
         freqs = get_ss_frequencies(res)
+        print(freqs["lt"]["B-p.Cost-Extent"])
 
     else:
         #need to combine frequencies of files to get the inverse freqs right
