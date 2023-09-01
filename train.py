@@ -44,6 +44,8 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
                     freqs[tag_type][tag] = comb
+                    if tag == "B-p.Duration-p.Gestalt":
+                        print("result", freqs[tag_type][tag])
 
 
 
@@ -86,7 +88,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     random.shuffle(res2)
 
     print(label_to_id)
-    
+    print("result2", freqs["lt"]["B-p.Duration-p.Gestalt"])
     return res2, label_to_id, id_to_label, freqs
 
 def combine_datasets(file_list: list, train_only=False):
@@ -194,7 +196,7 @@ def train(
     #could alter this to take a list of extra files so that it could be as many as you want.
     if extra_file:
         #for ex_file in extra_file: do this iteratively, add each extra file onto eachother, take the new label_to_id etc
-        extra_data, label_to_id, id_to_label, _ = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label, freqs=freqs) #use the existing id_to_label and just add to them
+        extra_data, label_to_id, id_to_label, freqs = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label, freqs=freqs) #use the existing id_to_label and just add to them
 
 
     if test_file:
