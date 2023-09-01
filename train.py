@@ -35,7 +35,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         for tag_type in ["lt", "ss", "ss2"]:
             all_tags = list(set(list(old_freqs[tag_type].keys()) + list(new_freqs[tag_type].keys())))
             if "B-p.Cost-Extent" in all_tags:
-                print("HOW SO")
+                print(all_tags)
             for tag in all_tags:
                 freqs[tag_type][tag] = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
 
