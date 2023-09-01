@@ -4,6 +4,7 @@ import glob
 from tqdm import tqdm
 from collections import defaultdict
 from math import log
+import sys
 
 conllulex = ['id', 'form', 'lemma', 'upos', 'xpos', 'feats', 'head','deprel', 'deps',
              'misc', 'smwe', 'lexcat', 'lexlemma', 'ss', 'ss2', 'wmwe', 'wcat', 'wlemma', 'lextag']
