@@ -119,20 +119,17 @@ def get_ss_frequencies(res: list):
     total_lt = len(freqs["lt"].keys())
     total_ss = len(freqs["ss"].keys())
     total_ss = len(freqs["ss2"].keys())
+    
+    return freqs
+
+def inversify_freqs(freqs):
+    """basically turns frequencies into log inverse freqs / surprisal"""
 
     #gotta populate the inverse frequencies using the frequencies
     for thing in freqs: #thing is either lt, ss, or ss2
         inv_freqs[thing] = {}
         for tag in freqs[thing]:
             inv_freqs[thing][tag] = 1 / log(freqs[thing][tag] + 1)
-
-    # for k in freqs:
-    #     print(k, freqs[k])
-    #     print("\n")
-    # 
-    # print("---------------\n")
-    # for k in inv_freqs:
-    #     print(k, inv_freqs[k])
     return inv_freqs
 
 

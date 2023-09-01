@@ -1,5 +1,5 @@
 from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer, AutoTokenizer, DataCollatorForTokenClassification
-from load_data import tokenize_and_align, get_ss_frequencies
+from load_data import tokenize_and_align, get_ss_frequencies, inversify_freqs
 import numpy as np
 import evaluate
 import random
@@ -14,11 +14,29 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 seqeval = evaluate.load("seqeval")
 
-def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None):
+def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None, freqs=None):
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
-    inv_freqs = get_ss_frequencies(res)
+
+    #potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
+    if not freqs:
+        freqs = get_ss_frequencies(res)
+
+    else:
+        #need to combine frequencies of files to get the inverse freqs right
+        old_freqs = freqs
+        new_freqs = get_ss_frequencies(res)
+
+        #make a new freqs to house combination of freqs
+        freqs = {"lt": {}, "ss": {}, "ss2": {} }
+        for tag_type in ["lt", "ss", "ss2"]:
+            all_tags = list(set(old_freqs[tag_type].keys() + new_freqs[tag_type].keys()))
+            for tag in all_tags:
+                freqs[tag_type][tag] = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
+
+
+
 
     #if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
@@ -59,7 +77,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
 
     print(label_to_id)
     
-    return res2, label_to_id, id_to_label, inv_freqs
+    return res2, label_to_id, id_to_label, freqs
 
 def combine_datasets(file_list: list, train_only=False):
     """basically, reads multiple language files in and then combines them into one larger dataset. Useful if you want to """
@@ -92,8 +110,9 @@ def compute_metrics(p, id_to_label):
 #Custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
 
-    def add_freqs(self, inv_freqs):
-        self.inv_freqs = inv_freqs
+    def add_freqs(self, freqs):
+        self.freqs = freqs
+        self.inv_freqs = inversify_freqs(self.freqs)
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """
@@ -160,16 +179,16 @@ def train(
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    data, label_to_id, id_to_label, inv_freqs = load_data(f"data/{file}", tokenizer)
+    data, label_to_id, id_to_label, freqs = load_data(f"data/{file}", tokenizer)
 
     #could alter this to take a list of extra files so that it could be as many as you want.
     if extra_file:
         #for ex_file in extra_file: do this iteratively, add each extra file onto eachother, take the new label_to_id etc
-        extra_data, label_to_id, id_to_label, _ = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label) #use the existing id_to_label and just add to them
+        extra_data, label_to_id, id_to_label, _ = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label, freqs=freqs) #use the existing id_to_label and just add to them
 
 
     if test_file:
-        test_data, _, _, _ = load_data(f"data/{test_file}", tokenizer)
+        test_data, _, _, _ = load_data(f"data/{test_file}", tokenizer) #don't need label to id for this
 
 
     # load model
@@ -207,11 +226,11 @@ def train(
         #for example: you could train on en + hi and test on en + hi (multilingual = True)
         #or you could train on en + hi and test on hi only (multilingual = False)
         if multilingual:
-            data = data + extra_data
+            data = data + extra_data #combine first then split
             train_dataset = data[len(data) // 5:]
             eval_dataset = data[:len(data) // 5]
         else:
-            train_dataset = data[len(data) // 5:] + extra_data
+            train_dataset = data[len(data) // 5:] + extra_data #combine extra only with training
             eval_dataset = data[:len(data) // 5]
 
     #if you supply a test file separately, you will test on that, and train on training data
@@ -233,7 +252,7 @@ def train(
         compute_metrics=lambda x: compute_metrics(x, id_to_label)
     )
 
-    trainer.add_freqs(inv_freqs)
+    trainer.add_freqs(freqs)
 
     # train
     trainer.train()
