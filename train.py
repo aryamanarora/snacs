@@ -27,7 +27,8 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         #need to combine frequencies of files to get the inverse freqs right
         old_freqs = freqs
         new_freqs = get_ss_frequencies(res)
-
+        print("new", new_freqs["lt"]["B-p.Cost-Extent"])
+        print("old", old_freqs["lt"]["B-p.Cost-Extent"])
         #make a new freqs to house combination of freqs
         freqs = {"lt": {}, "ss": {}, "ss2": {} }
         for tag_type in ["lt", "ss", "ss2"]:
