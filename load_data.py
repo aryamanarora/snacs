@@ -125,6 +125,7 @@ def get_ss_frequencies(res: list):
 def inversify_freqs(freqs):
     """basically turns frequencies into log inverse freqs / surprisal"""
 
+    inv_freqs = {"lt": {}, "ss": {}, "ss2": {}}
     #gotta populate the inverse frequencies using the frequencies
     for thing in freqs: #thing is either lt, ss, or ss2
         inv_freqs[thing] = {}
