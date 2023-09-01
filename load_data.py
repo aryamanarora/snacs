@@ -131,7 +131,7 @@ def inversify_freqs(freqs):
     for thing in freqs: #thing is either lt, ss, or ss2
         inv_freqs[thing] = {}
         for tag in freqs[thing]:
-            print(thing, tag, freqs[thing][tag], file=sys.stderr)
+            # print(thing, tag, freqs[thing][tag], file=sys.stderr)
             inv_freqs[thing][tag] = 1 / log(freqs[thing][tag] + 1)
     return inv_freqs
 

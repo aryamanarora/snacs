@@ -22,22 +22,25 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     #potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
     if not freqs:
         freqs = get_ss_frequencies(res)
-        print(freqs["lt"]["B-p.Cost-Extent"])
+        # print(freqs["lt"]["B-p.Cost-Extent"])
 
     else:
         #need to combine frequencies of files to get the inverse freqs right
         old_freqs = freqs
         new_freqs = get_ss_frequencies(res)
-        print("new", new_freqs["lt"]["B-p.Cost-Extent"])
-        print("old", old_freqs["lt"]["B-p.Cost-Extent"])
+        # print("new", new_freqs["lt"]["B-p.Cost-Extent"])
+        # print("old", old_freqs["lt"]["B-p.Cost-Extent"])
         #make a new freqs to house combination of freqs
         freqs = {"lt": {}, "ss": {}, "ss2": {} }
         for tag_type in ["lt", "ss", "ss2"]:
             all_tags = list(set(list(old_freqs[tag_type].keys()) + list(new_freqs[tag_type].keys())))
-            if "B-p.Cost-Extent" in all_tags:
-                print(all_tags)
+
             for tag in all_tags:
-                freqs[tag_type][tag] = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
+                comb = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
+
+                #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
+                if comb > 0:
+                    freqs[tag_type][tag] = comb
 
 
 
