@@ -3,6 +3,7 @@ from transformers import AutoTokenizer
 import glob
 from tqdm import tqdm
 from collections import defaultdict
+from math import log
 
 conllulex = ['id', 'form', 'lemma', 'upos', 'xpos', 'feats', 'head','deprel', 'deps',
              'misc', 'smwe', 'lexcat', 'lexlemma', 'ss', 'ss2', 'wmwe', 'wcat', 'wlemma', 'lextag']
@@ -123,7 +124,7 @@ def get_ss_frequencies(res: list):
     for thing in freqs: #thing is either lt, ss, or ss2
         inv_freqs[thing] = {}
         for tag in freqs[thing]:
-            inv_freqs[thing][tag] = 1 / freqs[thing][tag]
+            inv_freqs[thing][tag] = 1 / log(freqs[thing][tag])
 
     # for k in freqs:
     #     print(k, freqs[k])
