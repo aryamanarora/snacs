@@ -31,7 +31,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         #make a new freqs to house combination of freqs
         freqs = {"lt": {}, "ss": {}, "ss2": {} }
         for tag_type in ["lt", "ss", "ss2"]:
-            all_tags = list(set(old_freqs[tag_type].keys() + new_freqs[tag_type].keys()))
+            all_tags = list(set(list(old_freqs[tag_type].keys()) + list(new_freqs[tag_type].keys())))
             for tag in all_tags:
                 freqs[tag_type][tag] = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
 
