@@ -61,6 +61,10 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     
     return res2, label_to_id, id_to_label, inv_freqs
 
+def combine_datasets(file_list: list, train_only=False):
+    """basically, reads multiple language files in and then combines them into one larger dataset. Useful if you want to """
+    return
+
 def compute_metrics(p, id_to_label):
     """Compute metrics for evaluation."""
     predictions, labels = p
@@ -157,11 +161,15 @@ def train(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label, inv_freqs = load_data(f"data/{file}", tokenizer)
 
+    #could alter this to take a list of extra files so that it could be as many as you want.
     if extra_file:
-        extra_data, _, _, _ = load_data(f"data/{extra_file}", tokenizer)
+        #for ex_file in extra_file: do this iteratively, add each extra file onto eachother, take the new label_to_id etc
+        extra_data, label_to_id, id_to_label, _ = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label) #use the existing id_to_label and just add to them
+
 
     if test_file:
         test_data, _, _, _ = load_data(f"data/{test_file}", tokenizer)
+
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
@@ -193,10 +201,24 @@ def train(
 
     #split the file into train and eval if not separate eval file
     if not test_file:
-        train_dataset = data[len(data) // 5:]
-        eval_dataset = data[:len(data) // 5]
-    
+
+        #this asks if you want to train and test on combination of languages or just train on combination and test on single
+        #for example: you could train on en + hi and test on en + hi (multilingual = True)
+        #or you could train on en + hi and test on hi only (multilingual = False)
+        if multilingual:
+            data = data + extra_data
+            train_dataset = data[len(data) // 5:]
+            eval_dataset = data[:len(data) // 5]
+        else:
+            train_dataset = data[len(data) // 5:] + extra_data
+            eval_dataset = data[:len(data) // 5]
+
+    #if you supply a test file separately, you will test on that, and train on training data
     else:
+        #if you supply extra data, add that into training too
+        if extra_file:
+            data = data + extra_data
+
         train_dataset = data
         eval_dataset = test_data
 
