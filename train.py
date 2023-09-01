@@ -154,7 +154,8 @@ def train(
     weight_decay: float,
     freeze: bool,
     test_file: str,
-    extra_file: str):
+    extra_file: str,
+    multilingual: bool):
     """Train model."""
 
     # load data
