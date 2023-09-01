@@ -124,7 +124,7 @@ def get_ss_frequencies(res: list):
     for thing in freqs: #thing is either lt, ss, or ss2
         inv_freqs[thing] = {}
         for tag in freqs[thing]:
-            inv_freqs[thing][tag] = 1 / log(freqs[thing][tag])
+            inv_freqs[thing][tag] = 1 / log(freqs[thing][tag] + 1)
 
     # for k in freqs:
     #     print(k, freqs[k])
