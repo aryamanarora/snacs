@@ -34,9 +34,12 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         freqs = {"lt": {}, "ss": {}, "ss2": {} }
         for tag_type in ["lt", "ss", "ss2"]:
             all_tags = list(set(list(old_freqs[tag_type].keys()) + list(new_freqs[tag_type].keys())))
-
+            if "B-p.Duration-p.Gestalt" in all_tags:
+                print("IT's here...")
             for tag in all_tags:
                 comb = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
+                if tag == "B-p.Duration-p.Gestalt":
+                    print("mathy", new_freqs[tag_type][tag], old_freqs[tag_type][tag], comb)
 
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
