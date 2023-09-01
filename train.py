@@ -225,12 +225,18 @@ def train(
         #this asks if you want to train and test on combination of languages or just train on combination and test on single
         #for example: you could train on en + hi and test on en + hi (multilingual = True)
         #or you could train on en + hi and test on hi only (multilingual = False)
-        if multilingual:
-            data = data + extra_data #combine first then split
-            train_dataset = data[len(data) // 5:]
-            eval_dataset = data[:len(data) // 5]
+        if extra_file:
+            if multilingual:
+                data = data + extra_data #combine first then split
+                train_dataset = data[len(data) // 5:]
+                eval_dataset = data[:len(data) // 5]
+            else:
+                train_dataset = data[len(data) // 5:] + extra_data #combine extra only with training
+                eval_dataset = data[:len(data) // 5]
+
+        #this is most simple case: 1 file, split it into train + eval
         else:
-            train_dataset = data[len(data) // 5:] + extra_data #combine extra only with training
+            train_dataset = data[len(data) // 5:]
             eval_dataset = data[:len(data) // 5]
 
     #if you supply a test file separately, you will test on that, and train on training data
