@@ -19,9 +19,10 @@ from collections import defaultdict
 # random seed
 random.seed(42)
 
+# setup
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
 seqeval = evaluate.load("seqeval")
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None, freqs=None):
     """Load data from file and tokenize it."""
@@ -162,8 +163,8 @@ class MyTrainer(Trainer):
 
         weights2 = [float(w) for w in weights2]
 
-        weights = torch.tensor(weights).to("cuda")
-        weights2 = torch.tensor(weights2).to("cuda")
+        weights = torch.tensor(weights).to(DEVICE)
+        weights2 = torch.tensor(weights2).to(DEVICE)
 
 
         labels = labels.view(-1) #batch_size * sequence length
