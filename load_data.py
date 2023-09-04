@@ -2,6 +2,9 @@ import conllu
 from transformers import AutoTokenizer
 import glob
 from tqdm import tqdm
+from collections import defaultdict
+from math import log
+import sys
 
 conllulex = ['id', 'form', 'lemma', 'upos', 'xpos', 'feats', 'head','deprel', 'deps',
              'misc', 'smwe', 'lexcat', 'lexlemma', 'ss', 'ss2', 'wmwe', 'wcat', 'wlemma', 'lextag']
@@ -51,6 +54,7 @@ def tokenize_and_align(
                         else:
                             token['lextag'] = 'O'
                     else:
+                        #ask Aryaman about this line
                         token['lextag'] = 'I-' + smwe_tags[smwe]
                 elif token['ss'] != '_':
                     token['lextag'] = 'B-' + token['ss'] + '-' + token['ss2']
@@ -82,6 +86,53 @@ def tokenize_and_align(
         print(f"Done: {len(res)} sentences.")
 
     return res
+
+def get_ss_frequencies(res: list):
+    """prints out the relative frequencies of each SS, SS2 and lextag after a file has been tokenized and aligned.
+    The relative frequencies can be used for weighting a loss function during training. """
+    print("STARTING FREQUENCIES")
+    inv_freqs = {}
+    freqs = defaultdict(lambda: defaultdict(int))
+
+    for tokens, mask, labels in res:
+
+        #filter out masked tokens from labels
+        labels = [l for i, l in enumerate(labels) if mask[i] == 1]
+        for lab in labels:
+            lextag = lab
+            l = lab.split("-")
+            if len(l) == 1:
+                #lextag is "O", so both ss and ss2 are set to "O"
+                ss = "O"
+                ss2 = "O"
+            if len(l) == 3:
+                #lextag has B-ss-ss2 form. meaning the lextag only has one ss, meaning ss2 == ss.
+                ss = l[1]
+                ss2 = l[2]
+
+            freqs["lt"][lextag] += 1
+            freqs["ss"][ss] += 1
+            freqs["ss2"][ss2] += 1
+
+
+    total_lt = len(freqs["lt"].keys())
+    total_ss = len(freqs["ss"].keys())
+    total_ss = len(freqs["ss2"].keys())
+    
+    return freqs
+
+def inversify_freqs(freqs):
+    """basically turns frequencies into log inverse freqs / surprisal"""
+
+    inv_freqs = {"lt": {}, "ss": {}, "ss2": {}}
+    #gotta populate the inverse frequencies using the frequencies
+    for thing in freqs: #thing is either lt, ss, or ss2
+        inv_freqs[thing] = {}
+        for tag in freqs[thing]:
+            # print(thing, tag, freqs[thing][tag], file=sys.stderr)
+            inv_freqs[thing][tag] = 1 / log(freqs[thing][tag] + 1)
+    return inv_freqs
+
 
 
 def main():
