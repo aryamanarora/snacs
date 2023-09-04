@@ -1,4 +1,10 @@
-from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer, AutoTokenizer, DataCollatorForTokenClassification
+from transformers import (
+    AutoModelForTokenClassification,
+    TrainingArguments,
+    Trainer,
+    AutoTokenizer,
+    DataCollatorForTokenClassification,
+)
 from load_data import tokenize_and_align, get_ss_frequencies, inversify_freqs
 import numpy as np
 import evaluate
@@ -9,6 +15,9 @@ from torch.nn import CrossEntropyLoss
 import torch
 import sys
 from collections import defaultdict
+
+# random seed
+random.seed(42)
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -51,6 +60,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         label_to_id = {"None": -100}
         id_to_label = {-100: "None"}
 
+    # convert labels to ids
     for sent, mask, label in res:
         for i in range(len(sent)):
             if mask[i]:
@@ -65,7 +75,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
 
 
     # add sos and eos, convert labels to ids
-    sos_eos = tokenizer("")['input_ids']
+    sos_eos = tokenizer("")["input_ids"]
     for sent, mask, label in res:
         if len(sos_eos) == 2:
             sent = [sos_eos[0]] + sent + [sos_eos[1]]
@@ -78,17 +88,19 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
             'labels': label,
             "lang": lang_code
         })
-    
+        
     print(f"{len(label_to_id)} labels.")
-    random.shuffle(res2)
-
     print(label_to_id)
+
+    # shuffle
+    random.shuffle(res2)
 
     return res2, label_to_id, id_to_label, freqs
 
 def combine_datasets(file_list: list, train_only=False):
     """basically, reads multiple language files in and then combines them into one larger dataset. Useful if you want to """
     return
+
 
 def compute_metrics(p, id_to_label):
     """Compute metrics for evaluation."""
@@ -114,9 +126,8 @@ def compute_metrics(p, id_to_label):
     }
 
 
-#Custom trainer which is used for custom weighted loss function
+# custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
-
     def add_freqs(self, freqs):
         self.freqs = freqs
         self.inv_freqs = inversify_freqs(self.freqs)
@@ -127,12 +138,11 @@ class MyTrainer(Trainer):
         """
 
         labels = inputs.pop("labels")
-
         outputs = model(**inputs)
-
         logits = outputs.logits
-
-        logits = logits.view(-1, logits.shape[-1]) #have to reshape to (batch_size * sequence_length, # labels)
+        logits = logits.view(
+            -1, logits.shape[-1]
+        )  # have to reshape to (batch_size * sequence_length, # labels)
 
         num_labels = logits.size(1)
 
@@ -167,10 +177,7 @@ class MyTrainer(Trainer):
             return loss
 
 
-
-
-
-#model training
+# model training
 def train(
     model_name: str,
     file: str,
@@ -200,7 +207,10 @@ def train(
 
     # load model
     model = AutoModelForTokenClassification.from_pretrained(
-        model_name, num_labels=len(label_to_id), id2label=id_to_label, label2id=label_to_id
+        model_name,
+        num_labels=len(label_to_id),
+        id2label=id_to_label,
+        label2id=label_to_id,
     )
 
     print("NUM labels", len(label_to_id), file=sys.stderr)
@@ -208,7 +218,7 @@ def train(
     # freeze layers
     if freeze:
         for name, param in model.named_parameters():
-            if 'classifier' not in name:
+            if "classifier" not in name:
                 param.requires_grad = False
 
     # set up trainer
@@ -226,7 +236,7 @@ def train(
         push_to_hub=False,
     )
 
-    #split the file into train and eval if not separate eval file
+    # split the file into train and eval if not separate eval file
     if not test_file:
 
         #this asks if you want to train and test on combination of languages or just train on combination and test on single
@@ -270,6 +280,7 @@ def train(
     # train
     trainer.train()
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
@@ -282,9 +293,11 @@ def main():
     parser.add_argument("--test_file", type=str, default=None, help="If you want to test on a different file than training. Otherwise, splits the main file into train/eval splits.")
     parser.add_argument("--extra_file", type=str, default=None, help="If you want to add an extra file to add more data during the fine-tuning stage. Evaluation is still only perfomed on the original file test split.")
     parser.add_argument("--multilingual", action="store_true", help="If supplying an extra lang file, put true to include that language in eval. Otherwise it will only test on original lang")
+    
     args = parser.parse_args()
 
     train(**vars(args))
+
 
 if __name__ == "__main__":
     main()
