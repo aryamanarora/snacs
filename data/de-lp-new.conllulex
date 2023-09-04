@@ -56,8 +56,7 @@
 3	das	das	ART	ART	_	4	det	_	_	_	_	_	_	_
 4	Bild	bild	NOUN	NN	Number=Sing	6	nsubj	_	_	_	_	_	_	_
 5	mal	mal	ADV	ADV	_	6	advmod	_	_	_	_	_	_	_
-6-1	nach	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Topic	p.Direction
-6-2	gezeichnet	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+6	nachgezeichnet	nachgezeichnet	VVPP	VVPP	_	0	root	_	_	_	_	_	Topic	Direction
 7	:	:	$.	$.	_	6	punct	_	_	_	_	_	_	_
 														
 # text = In dem Buch hieß es : `` Riesenschlangen verschlingen ihre Beute in einem Stück , ohne sie zu zerkauen .														
@@ -106,8 +105,7 @@
 4	viel	viel	ADV	ADV	_	7	advmod	_	_	_	_	_	_	_
 5	über	über	APPR	APPR	_	6	case	_	_	_	_	über	p.Topic	p.Path
 6	Dschungelabenteuer	dschungelabenteuer	NOUN	NN	Number=Sing	7	nmod	_	_	_	_	_	_	_
-7-1	nach	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	p.Extent	p.Interval
-7-2	gedacht	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	_	_
+7	nachgedacht	nachgedacht	VVPP	VVPP	_	0	root	_	_	_	_	_	Extent	Interval
 8	und	und	KON	KON	_	7	cc	_	_	_	_	_	_	_
 9	dann	dann	ADV	ADV	_	10	advmod	_	_	_	_	_	_	_
 10	gelang	gelang	VVFIN	VVFIN	_	7	conj	_	_	_	_	_	_	_
@@ -125,7 +123,7 @@
 1	Sie	sie	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
 2	sah	sah	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 3	so	so	ADV	ADV	_	2	advmod	_	_	_	_	_	_	_
-4	aus	aus	PTKVZ	PTKVZ	_	2	mark	_	_	_	_	aus		
+4	aus	aus	PTKVZ	PTKVZ	_	2	mark	_	_	_	_	aus	_	_
 5	:	:	$.	$.	_	2	punct	_	_	_	_	_	_	_
 														
 # text = Ich zeigte mein Meisterwerk den Erwachsenen und habe sie gefragt , ob sie vor meiner Zeichnung Angst hätten :														
@@ -226,7 +224,7 @@
 4	2	2	CARD	CARD	_	3	nmod	_	_	_	_	_	_	_
 5	sah	sah	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 6	so	so	ADV	ADV	_	5	advmod	_	_	_	_	_	_	_
-7	aus	aus	PTKVZ	PTKVZ	_	5	mark	_	_	_	_	aus		
+7	aus	aus	PTKVZ	PTKVZ	_	5	mark	_	_	_	_	aus	_	_
 8	:	:	$.	$.	_	5	punct	_	_	_	_	_	_	_
 														
 # text = Die Erwachsenen haben mir geraten , mich nicht mehr mit offenen oder geschlossenen Riesenschlangen zu beschäftigen , sondern mich stattdessen mehr für Geografie , Geschichte , Mathe und Grammatik zu interessieren .														
@@ -367,8 +365,7 @@
 7	China	china	NE	NE	_	10	dobj	_	_	_	_	_	_	_
 8	von	von	APPR	APPR	_	9	case	_	_	_	_	von	p.ComparisonRef	p.Source
 9	Arizona	arizona	NE	NE	_	10	nmod	_	_	_	_	_	_	_
-10-1	unter	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_		
-10-2	scheiden	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+10	unterscheiden	unterscheiden	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
 11	.	.	$.	$.	_	10	punct	_	_	_	_	_	_	_
 														
 # text = Das ist sehr nützlich , wenn man sich in der Nacht verirrt hat .														
@@ -648,8 +645,7 @@
 2	könnt	könnt	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 3	ihr	ihr	PPER	PPER	_	2	nsubj	_	_	_	_	_	_	_
 4	euch	euch	PRF	PRF	_	5	dobj	_	_	_	_	_	_	_
-5-1	vor	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	_	_
-5-2	stellen	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	_	_
+5	vorstellen	vorstellen	VVINF	VVINF	_	2	xcomp	_	_	_	_	_	_	_
 6	,	,	$,	$,	_	2	punct	_	_	_	_	_	_	_
 7	wie	wie	PWAV	PWAV	_	8	advmod	_	_	_	_	wie	p.Extent	p.ComparisonRef
 8	überrascht	überrascht	ADJD	ADJD	_	2	parataxis	_	_	_	_	_	_	_
@@ -719,8 +715,7 @@
 2	ich	ich	PPER	PPER	_	3	nsubj	_	_	_	_	_	_	_
 3	sah	sah	VVFIN	VVFIN	_	0	root	_	_	_	_	_	_	_
 4	ein	ein	ART	ART	_	5	det	_	_	_	_	_	_	_
-5-1	außer	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	_	_
-5-2	gewöhnliches	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	_	_
+5	außergewöhnliches	außergewöhnliches	ADJA	ADJA	_	3	dobj	_	_	_	_	_	_	_
 6	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
 7	kleines	kleines	ADJA	ADJA	_	8	amod	_	_	_	_	_	_	_
 8	Kerlchen	kerlchen	NOUN	NN	Number=Sing	5	conj	_	_	_	_	_	_	_
@@ -742,7 +737,7 @@
 8	später	später	ADJD	ADJD	_	13	advmod	_	_	_	_	_	_	_
 9	von	von	APPR	APPR	_	10	case	_	_	_	_	von	p.Topic	p.Source
 10	ihm	ihm	PPER	PPER	_	13	nmod	_	_	_	_	_	_	_
-11	zu	zu	APPR	APPR	_	12	case	_	_	_	_	zu		
+11	zu	zu	APPR	APPR	_	12	case	_	_	_	_	zu	_	_
 12	Stande	stande	NOUN	NN	Number=Sing	13	nmod	_	_	_	_	_	_	_
 13	brachte	brachte	VVFIN	VVFIN	_	4	acl	_	_	_	_	_	_	_
 14	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
@@ -1038,10 +1033,10 @@
 8	ich	ich	PPER	PPER	_	9	nsubj	_	_	_	_	_	_	_
 9	sah	sah	VVFIN	VVFIN	_	5	advcl	_	_	_	_	_	_	_
 10	,	,	$,	$,	_	5	punct	_	_	_	_	_	_	_
-11	wie	wie	PWAV	PWAV	_	13	case	_	_	_	_	wie		p.ComparisonRef
+11	wie	wie	PWAV	PWAV	_	13	case	_	_	_	_	wie	_	p.ComparisonRef
 12	das	das	ART	ART	_	13	det	_	_	_	_	_	_	_
 13	Gesicht	gesicht	NOUN	NN	Number=Sing	17	nmod	_	_	_	_	_	_	_
-14	meines	meines	PPOSAT	PPOSAT	_	16	det	_	_	_	_	PRON_POSS		p.Gestalt
+14	meines	meines	PPOSAT	PPOSAT	_	16	det	_	_	_	_	PRON_POSS	_	p.Gestalt
 15	jungen	jungen	ADJA	ADJA	_	16	amod	_	_	_	_	_	_	_
 16	Kritikers	kritikers	NOUN	NN	Number=Sing	17	nsubj	_	_	_	_	_	_	_
 17	strahlte	strahlte	VVFIN	VVFIN	_	5	ccomp	_	_	_	_	_	_	_
@@ -1086,8 +1081,7 @@
 10	schien	schien	VVFIN	VVFIN	_	4	conj	_	_	_	_	_	_	_
 11	meine	meine	VVFIN	VVFIN	_	13	dobj	_	_	_	_	PRON_POSS	p.Originator	p.Gestalt
 12	zu	zu	PTKZU	PTKZU	_	13	aux	_	_	_	_	_	_	_
-13-1	über	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	über	p.PartPortion	p.Path
-13-2	hören	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	_	_	_
+13	überhören	überhören	VVINF	VVINF	_	10	xcomp	_	_	_	_	über	PartPortion	Path
 14	.	.	$.	$.	_	4	punct	_	_	_	_	_	_	_
 														
 # text = Es waren zufällig ausgesprochene Worte , durch die mir nach und nach alles klar wurde .														
@@ -1207,8 +1201,7 @@
 1	Ihr	ihr	PPER	PPER	_	2	nmod:poss	_	_	_	_	_	_	_
 2	könnt	könnt	VVFIN	VVFIN	_	4	nsubj	_	_	_	_	_	_	_
 3	euch	euch	PRF	PRF	_	4	dobj	_	_	_	_	_	_	_
-4-1	vor	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
-4-2	stellen	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
+4	vorstellen	vorstellen	VVINF	VVINF	_	0	root	_	_	_	_	_	_	_
 5	,	,	$,	$,	_	4	punct	_	_	_	_	_	_	_
 6	wie	wie	PWAV	PWAV	_	10	mark	_	_	_	_	wie	p.Extent	p.ComparisonRef
 7	sehr	sehr	ADV	ADV	_	10	advmod	_	_	_	_	_	_	_
@@ -1227,8 +1220,7 @@
 20	''	''	ADV	ADV	_	19	punct	_	_	_	_	_	_	_
 21	schon	schon	ADV	ADV	_	23	advmod	_	_	_	_	_	_	_
 22	halb	halb	ADJD	ADJD	_	23	advmod	_	_	_	_	_	_	_
-23-1	an	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	an	p.Recipient	p.Goal
-23-2	vertraut	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	_	_	_
+23	anvertraut	anvertraut	VVPP	VVPP	_	19	acl	_	_	_	_	an	Recipient	Goal
 24	hatte	hatte	VAFIN	VAFIN	_	23	aux	_	_	_	_	_	_	_
 25	.	.	$.	$.	_	14	punct	_	_	_	_	_	_	_
 														
@@ -1345,7 +1337,7 @@
 15	denn	denn	ADV	ADV	_	19	advmod	_	_	_	_	_	_	_
 16	deiner	deiner	ADJA	ADJA	_	17	amod	_	_	_	_	PRON_POSS	p.Experiencer	p.Gestalt
 17	Meinung	meinung	NOUN	NN	Number=Sing	19	dobj	_	_	_	_	_	_	_
-18	nach	nach	APPO	APPO	_	19	advmod	_	_	_	_	nach		p.Direction
+18	nach	nach	APPO	APPO	_	19	advmod	_	_	_	_	nach	_	p.Direction
 19	gehen	gehen	VVINF	VVINF	_	2	ccomp	_	_	_	_	_	_	_
 20	?	?	$.	$.	_	19	punct	_	_	_	_	_	_	_
 21	''	''	NOUN	NN	Number=Sing	2	punct	_	_	_	_	_	_	_
@@ -1458,7 +1450,7 @@
 4	den	den	ART	ART	_	6	det	_	_	_	_	_	_	_
 5	Vereinigten	vereinigten	ADJA	ADJA	_	6	amod	_	_	_	_	_	_	_
 6	Staaten	staaten	NOUN	NN	Number=Sing	9	nmod	_	_	_	_	_	_	_
-7	von	von	APPR	APPR	_	8	case	_	_	_	_	von		
+7	von	von	APPR	APPR	_	8	case	_	_	_	_	von	_	_
 8	Amerika	amerika	NE	NE	_	6	nmod	_	_	_	_	_	_	_
 9	Mittagszeit	mittagszeit	NOUN	NN	Number=Sing	13	advcl	_	_	_	_	_	_	_
 10	ist	ist	VAFIN	VAFIN	_	9	cop	_	_	_	_	_	_	_
@@ -1877,7 +1869,7 @@
 14	Du	du	PPER	PPER	_	15	nsubj	_	_	_	_	_	_	_
 15	bringst	bringst	ADV	ADV	_	11	ccomp	_	_	_	_	_	_	_
 16	alles	alles	PIS	PIS	_	17	dobj	_	_	_	_	_	_	_
-17	durcheinander	durcheinander	VVFIN	VVFIN	_	15	xcomp	_	_	_	_	durch		p.Path
+17	durcheinander	durcheinander	VVFIN	VVFIN	_	15	xcomp	_	_	_	_	durch	_	p.Path
 18	!	!	$.	$.	_	10	punct	_	_	_	_	_	_	_
 19	''	''	NE	NE	_	10	punct	_	_	_	_	_	_	_
 														

@@ -24,8 +24,6 @@ def tokenize_and_align(
 
         failed = 0
         for sent in tqdm(conllu.parse_incr(fin, fields=conllulex)):
-            if verbose:
-                print(sent.metadata['sent_id'])
             text = sent.metadata['text']
 
             tokens = []
@@ -138,11 +136,10 @@ def inversify_freqs(freqs):
 
 
 def main():
-    for file in glob.glob("data/en-lp.conllulex"):
+    for file in glob.glob("data/de-*.conllulex"):
         print(file)
-        tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-        res = tokenize_and_align(file, tokenizer, verbose=False)
-        inv_freqs = get_ss_frequencies(res)
+        tokenizer = AutoTokenizer.from_pretrained("gpt2")
+        tokenize_and_align(file, tokenizer, verbose=False)
 
 if __name__ == "__main__":
     main()
