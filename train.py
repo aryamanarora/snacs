@@ -151,6 +151,7 @@ class MyTrainer(Trainer):
 
         weights = [1] * num_labels
 
+
         weights2 = [.0001] +list(self.inv_freqs["lt"].values())
         weights[1] = 0.1 #downweighting label "O" which seems to be label 1 almost always
         weights[0] = 0.0001 #downweighting label "-100" ... not sure if would ever matter
@@ -188,7 +189,8 @@ def train(
     freeze: bool,
     test_file: str,
     extra_file: str,
-    multilingual: bool):
+    multilingual: bool,
+    weighted: bool):
     """Train model."""
 
     # load data
@@ -264,18 +266,28 @@ def train(
 
         train_dataset = data
         eval_dataset = test_data
+    if weighted: #checks if you want weighted loss function
+        trainer = MyTrainer(
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            data_collator=data_collator,
+            compute_metrics=lambda x: compute_metrics(x, id_to_label)
+        )
 
-    trainer = MyTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=eval_dataset,
-        tokenizer=tokenizer,
-        data_collator=data_collator,
-        compute_metrics=lambda x: compute_metrics(x, id_to_label)
-    )
-
-    trainer.add_freqs(freqs)
+        trainer.add_freqs(freqs)
+    else: #if no weighted loss function use default trainer
+        trainer = Trainer(
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            data_collator=data_collator,
+            compute_metrics=lambda x: compute_metrics(x, id_to_label)
+        )
 
     # train
     trainer.train()
@@ -293,6 +305,7 @@ def main():
     parser.add_argument("--test_file", type=str, default=None, help="If you want to test on a different file than training. Otherwise, splits the main file into train/eval splits.")
     parser.add_argument("--extra_file", type=str, default=None, help="If you want to add an extra file to add more data during the fine-tuning stage. Evaluation is still only perfomed on the original file test split.")
     parser.add_argument("--multilingual", action="store_true", help="If supplying an extra lang file, put true to include that language in eval. Otherwise it will only test on original lang")
+    parser.add_argument("--weighted", action="store_true", help="determines if CE loss function is weighted by inverse frequency. Default is equal weighting for each training example.")
     
     args = parser.parse_args()
 
