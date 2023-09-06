@@ -21,6 +21,10 @@ import json
 # random seed
 random.seed(42)
 
+# make logs dir
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+
 # setup
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 seqeval = evaluate.load("seqeval")
@@ -53,9 +57,6 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
                     freqs[tag_type][tag] = comb
-
-
-
 
     #if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
@@ -156,7 +157,6 @@ def compute_metrics(p, id_to_label, eval_dataset):
             ret[key] = results[key]
 
     return ret
-
 
 # custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
