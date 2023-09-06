@@ -142,14 +142,20 @@ def compute_metrics(p, id_to_label, eval_dataset):
 
     # compute metrics
     results = seqeval.compute(predictions=true_predictions, references=true_labels, scheme="IOB2")
-    print(results)
-
-    return {
+    ret = {
         "precision": results["overall_precision"],
         "recall": results["overall_recall"],
         "f1": results["overall_f1"],
         "accuracy": results["overall_accuracy"],
     }
+    
+    # add metrics for each label
+    # TODO: each token type
+    for key in results:
+        if not key.startswith("overall"):
+            ret[key] = results[key]
+
+    return ret
 
 
 # custom trainer which is used for custom weighted loss function
