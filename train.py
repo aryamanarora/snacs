@@ -15,6 +15,8 @@ from torch.nn import CrossEntropyLoss
 import torch
 import sys
 from collections import defaultdict
+import wandb
+import json
 
 # random seed
 random.seed(42)
@@ -103,11 +105,12 @@ def combine_datasets(file_list: list, train_only=False):
     return
 
 
-def compute_metrics(p, id_to_label):
+def compute_metrics(p, id_to_label, eval_dataset):
     """Compute metrics for evaluation."""
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
 
+    # make human readable
     true_predictions = [
         [id_to_label[p] for (p, l) in zip(prediction, label) if l != -100]
         for prediction, label in zip(predictions, labels)
@@ -118,7 +121,29 @@ def compute_metrics(p, id_to_label):
         for prediction, label in zip(predictions, labels)
     ]
 
-    results = seqeval.compute(predictions=true_predictions, references=true_labels)
+    # log predictions to file (same id as wandb run)
+    with open(f"logs/{wandb.run.id}.json", "a") as f:
+
+        # log id_to_label mapping
+        if os.path.getsize(f"logs/{wandb.run.id}.json") > 0:
+            f.write("\n")
+        
+        # collect predictions
+        sents = []
+        for i in range(len(predictions)):
+            sents.append({
+                'input_ids': eval_dataset[i]['input_ids'],
+                'prediction': true_predictions[i],
+                'label': true_labels[i]
+            })
+        
+        # dump to file
+        json.dump(sents, f)
+
+    # compute metrics
+    results = seqeval.compute(predictions=true_predictions, references=true_labels, scheme="IOB2")
+    print(results)
+
     return {
         "precision": results["overall_precision"],
         "recall": results["overall_recall"],
@@ -273,7 +298,7 @@ def train(
         eval_dataset=eval_dataset,
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=lambda x: compute_metrics(x, id_to_label)
+        compute_metrics=lambda x: compute_metrics(x, id_to_label, eval_dataset),
     )
 
     trainer.add_freqs(freqs)
