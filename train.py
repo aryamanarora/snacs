@@ -69,7 +69,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         for i in range(len(sent)):
             if mask[i]:
                 if label[i] not in label_to_id:
-                    id = len(label_to_id)
+                    id = len(label_to_id) - 1
                     label_to_id[label[i]] = id
                     id_to_label[id] = label[i]
 
@@ -105,6 +105,9 @@ def compute_metrics(p, id_to_label, eval_dataset):
     """Compute metrics for evaluation."""
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
+    print(id_to_label)
+    print(predictions)
+    print(labels)
 
     # make human readable
     true_predictions = [
@@ -218,6 +221,9 @@ def train(
     multilingual: bool):
     """Train model."""
 
+    # update summary for wandb
+    command_line_args = locals()
+
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label, freqs = load_data(f"data/{file}", tokenizer)
@@ -304,17 +310,18 @@ def train(
     )
     trainer.add_freqs(freqs)
 
+    # update
+    run = wandb.init(project="huggingface")
+    run.summary.update(command_line_args)
+
     # train
     trainer.train()
-
-    # update summary for wandb
-    wandb.run.summary.update(locals())
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
-    parser.add_argument("--file", type=str, default="en-lp.conllulex")
+    parser.add_argument("--file", type=str, default="en-test.conllulex")
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument("--epochs", type=int, default=10)
