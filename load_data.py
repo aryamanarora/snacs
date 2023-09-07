@@ -17,6 +17,9 @@ def tokenize_and_align(
     o_to_b: bool=True,
     verbose: bool=False
 ):
+    # remember start and end tokens for later
+    start_token = tokenizer.bos_token_id if tokenizer.bos_token_id is not None else tokenizer.cls_token_id
+    end_token = tokenizer.eos_token_id if tokenizer.eos_token_id is not None else tokenizer.sep_token_id
     
     print(file)
     res = []
@@ -34,7 +37,6 @@ def tokenize_and_align(
             smwe_tags = {}
 
             for i, token in enumerate(sent):
-
                 # ignore subword tokens (is this a good idea?)
                 if not isinstance(token['id'], int): continue
 
@@ -45,6 +47,7 @@ def tokenize_and_align(
                         token['ss2'] = '_'
 
                 # generate BIO tag
+                # every span starts with a B (BIO-2 style)
                 if token['smwe'] != '_':
                     smwe, pos = token['smwe'].split(':')
                     if smwe not in smwe_tags:
@@ -54,7 +57,6 @@ def tokenize_and_align(
                         else:
                             token['lextag'] = 'O'
                     else:
-                        #ask Aryaman about this line
                         token['lextag'] = 'I-' + smwe_tags[smwe]
                 elif token['ss'] != '_':
                     token['lextag'] = 'B-' + token['ss'] + '-' + token['ss2']
@@ -66,20 +68,36 @@ def tokenize_and_align(
                 if i == 0 or not add_space: tok = tokenizer.encode(token['form'])
                 else: tok = tokenizer.encode(' ' + token['form'])
 
+                # remove bos/eos/cls/sep tokens
+                tok = [t for t in tok if t not in tokenizer.all_special_ids]
+
                 # add tag + 'None' for each remaining subword token
                 labels.extend([token['lextag']] + ['None' for _ in range(len(tok) - 1)])
                 mask.extend([1] + [0 for _ in range(len(tok) - 1)])
                 tokens.extend(tok)
             
+            # now add bos/cls and eos/sep tokens
+            if start_token is not None:
+                tokens = [start_token] + tokens
+                mask = [0] + mask
+                labels = ['None'] + labels
+            if end_token is not None:
+                tokens.append(end_token)
+                mask.append(0)
+                labels.append('None')
+            
+            # append to result
             if work:
                 res.append([tokens, mask, labels])
 
+    # print out some examples
     if verbose:
         for tokens, mask, labels in res:
             for j in range(len(tokens)):
                 print(f"{tokens[j]:<10} {tokenizer.decode(tokens[j]):<15} {mask[j]:<10} {labels[j]:<30}")
             input()
 
+    # stats
     if failed != 0:
         print(f"Failed to parse {failed} sentences, did {len(res)}.")
     else:
@@ -136,10 +154,11 @@ def inversify_freqs(freqs):
 
 
 def main():
-    for file in glob.glob("data/de-*.conllulex"):
+    for file in glob.glob("data/en-test.conllulex"):
         print(file)
-        tokenizer = AutoTokenizer.from_pretrained("gpt2")
-        tokenize_and_align(file, tokenizer, verbose=False)
+        tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        dataset = tokenize_and_align(file, tokenizer, verbose=False)
+        print(dataset[0])
 
 if __name__ == "__main__":
     main()
