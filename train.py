@@ -310,7 +310,7 @@ def train(
         trainer = MyTrainer(**trainer_args)
         trainer.add_freqs(freqs)
     else:
-        Trainer(**trainer_args)
+        trainer = Trainer(**trainer_args)
 
     # update
     run = wandb.init(project="huggingface")
