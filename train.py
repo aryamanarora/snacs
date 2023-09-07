@@ -74,9 +74,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                     id_to_label[id] = label[i]
 
     res2 = []
-
-    lang_code = file.split("/")[-1].split("-")[0] #this should work?
-
+    lang_code = file.split("/")[-1].split("-")[0] # this should work?
 
     # convert labels to ids
     for sent, mask, label in res:
@@ -105,9 +103,6 @@ def compute_metrics(p, id_to_label, eval_dataset):
     """Compute metrics for evaluation."""
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
-    print(id_to_label)
-    print(predictions)
-    print(labels)
 
     # make human readable
     true_predictions = [

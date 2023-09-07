@@ -18,8 +18,8 @@ def tokenize_and_align(
     verbose: bool=False
 ):
     # remember start and end tokens for later
-    start_token = tokenizer.bos_token_id if tokenizer.bos_token_id is not None else tokenizer.cls_token_id
-    end_token = tokenizer.eos_token_id if tokenizer.eos_token_id is not None else tokenizer.sep_token_id
+    delimiters = list(tokenizer.encode(''))
+    start_token, end_token = (None, None) if len(delimiters) != 2 else (delimiters[0], delimiters[1])
     
     print(file)
     res = []
@@ -69,7 +69,7 @@ def tokenize_and_align(
                 else: tok = tokenizer.encode(' ' + token['form'])
 
                 # remove bos/eos/cls/sep tokens
-                tok = [t for t in tok if t not in tokenizer.all_special_ids]
+                tok = [t for t in tok if t not in delimiters]
 
                 # add tag + 'None' for each remaining subword token
                 labels.extend([token['lextag']] + ['None' for _ in range(len(tok) - 1)])
@@ -88,6 +88,7 @@ def tokenize_and_align(
             
             # append to result
             if work:
+                assert len(tokens) == len(mask) == len(labels)
                 res.append([tokens, mask, labels])
 
     # print out some examples
