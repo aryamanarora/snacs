@@ -213,7 +213,9 @@ def train(
     freeze: bool,
     test_file: str,
     extra_file: str,
-    multilingual: bool):
+    multilingual: bool,
+    loss_fn: str
+):
     """Train model."""
 
     # update summary for wandb
@@ -294,15 +296,16 @@ def train(
         eval_dataset = test_data
 
     # set up trainer
-    trainer = MyTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=eval_dataset,
-        tokenizer=tokenizer,
-        data_collator=data_collator,
-        compute_metrics=lambda x: compute_metrics(x, id_to_label, eval_dataset),
-    )
+    trainer_args = {
+        "model": model,
+        "args": training_args,
+        "train_dataset": train_dataset,
+        "eval_dataset": eval_dataset,
+        "tokenizer": tokenizer,
+        "data_collator": data_collator,
+        "compute_metrics": lambda x: compute_metrics(x, id_to_label, eval_dataset),
+    }
+    trainer = MyTrainer(**trainer_args) if loss_fn == "weighted" else Trainer(**trainer_args)
     trainer.add_freqs(freqs)
 
     # update
@@ -316,6 +319,7 @@ def train(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
+    parser.add_argument("--loss_fn", type=str, default=None)
     parser.add_argument("--file", type=str, default="en-test.conllulex")
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--batch_size", type=int, default=16)
