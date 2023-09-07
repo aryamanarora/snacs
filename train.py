@@ -305,8 +305,12 @@ def train(
         "data_collator": data_collator,
         "compute_metrics": lambda x: compute_metrics(x, id_to_label, eval_dataset),
     }
-    trainer = MyTrainer(**trainer_args) if loss_fn == "weighted" else Trainer(**trainer_args)
-    trainer.add_freqs(freqs)
+    trainer = None
+    if loss_fn == "weighted":
+        trainer = MyTrainer(**trainer_args)
+        trainer.add_freqs(freqs)
+    else:
+        Trainer(**trainer_args)
 
     # update
     run = wandb.init(project="huggingface")
