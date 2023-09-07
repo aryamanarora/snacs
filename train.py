@@ -35,7 +35,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     res = tokenize_and_align(file, tokenizer)
 
 
-    #potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
+    # potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
     if not freqs:
         freqs = get_ss_frequencies(res)
         # print(freqs["lt"]["B-p.Cost-Extent"])
@@ -58,7 +58,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                 if comb > 0:
                     freqs[tag_type][tag] = comb
 
-    #if label-id mapping exists from previous language file, can use that
+    # if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
     if not id_to_label and not label_to_id:
         label_to_id = {"None": -100}
@@ -222,7 +222,7 @@ def train(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label, freqs = load_data(f"data/{file}", tokenizer)
 
-    #could alter this to take a list of extra files so that it could be as many as you want.
+    # could alter this to take a list of extra files so that it could be as many as you want.
     if extra_file:
         #for ex_file in extra_file: do this iteratively, add each extra file onto eachother, take the new label_to_id etc
         extra_data, label_to_id, id_to_label, freqs = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label, freqs=freqs) #use the existing id_to_label and just add to them
@@ -292,6 +292,7 @@ def train(
         train_dataset = data
         eval_dataset = test_data
 
+    # set up trainer
     trainer = MyTrainer(
         model=model,
         args=training_args,
@@ -301,11 +302,13 @@ def train(
         data_collator=data_collator,
         compute_metrics=lambda x: compute_metrics(x, id_to_label, eval_dataset),
     )
-
     trainer.add_freqs(freqs)
 
     # train
     trainer.train()
+
+    # update summary for wandb
+    wandb.run.summary.update(locals())
 
 
 def main():
