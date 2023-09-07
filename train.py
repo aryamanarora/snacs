@@ -78,13 +78,8 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     lang_code = file.split("/")[-1].split("-")[0] #this should work?
 
 
-    # add sos and eos, convert labels to ids
-    sos_eos = tokenizer("")["input_ids"]
+    # convert labels to ids
     for sent, mask, label in res:
-        if len(sos_eos) == 2:
-            sent = [sos_eos[0]] + sent + [sos_eos[1]]
-            mask = [0] + mask + [0]
-            label = ["None"] + label + ["None"]
         label = [label_to_id[x] for x in label]
         res2.append({
             'input_ids': sent,
