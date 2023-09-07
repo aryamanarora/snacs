@@ -69,7 +69,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         for i in range(len(sent)):
             if mask[i]:
                 if label[i] not in label_to_id:
-                    id = len(label_to_id) - 1
+                    id = len(label_to_id)
                     label_to_id[label[i]] = id
                     id_to_label[id] = label[i]
 
