@@ -154,10 +154,10 @@ def compute_metrics(p, id_to_label, eval_dataset):
     lexlemma = defaultdict(lambda: {"correct": 0, "total": 0})
     for i in range(len(predictions)):
         for j in range(len(predictions[i])):
-            if eval_dataset[i]['lexlemma'][j] == "None":
+            if labels[i][j] == -100 or true_labels[i][j] == "O":
                 continue
             lexlemma[eval_dataset[i]['lexlemma'][j]]["total"] += 1
-            if true_predictions[i][j] == true_labels[i][j]:
+            if predictions[i][j] == labels[i][j]:
                 lexlemma[eval_dataset[i]['lexlemma'][j]]["correct"] += 1
     
     # calculate acc and put in ret
