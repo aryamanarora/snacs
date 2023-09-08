@@ -63,7 +63,7 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
         id_to_label = {-100: "None"}
 
     # convert labels to ids
-    for sent, mask, label in res:
+    for sent, mask, label, lexlemma in res:
         for i in range(len(sent)):
             if mask[i]:
                 if label[i] not in label_to_id:
