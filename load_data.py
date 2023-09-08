@@ -80,10 +80,12 @@ def tokenize_and_align(
                 tokens = [start_token] + tokens
                 mask = [0] + mask
                 labels = ['None'] + labels
+                lexlemmas = [''] + lexlemmas
             if end_token is not None:
                 tokens.append(end_token)
                 mask.append(0)
                 labels.append('None')
+                lexlemmas.append('')
             
             # append to result
             if work:

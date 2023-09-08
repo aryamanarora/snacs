@@ -59,8 +59,10 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     # if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
     if not id_to_label and not label_to_id:
-        label_to_id = {"None": -100}
-        id_to_label = {-100: "None"}
+        label_to_id = defaultdict(int)
+        label_to_id["None"] = -100
+        id_to_label = defaultdict(str)
+        id_to_label[-100] = "None"
 
     # convert labels to ids
     for sent, mask, label, lexlemma in res:
