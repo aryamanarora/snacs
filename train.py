@@ -59,9 +59,9 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     # if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
     if not id_to_label and not label_to_id:
-        label_to_id = defaultdict(int)
+        label_to_id = defaultdict(lambda: -100)
         label_to_id["None"] = -100
-        id_to_label = defaultdict(str)
+        id_to_label = defaultdict(lambda: 'O')
         id_to_label[-100] = "None"
 
     # convert labels to ids
@@ -154,7 +154,7 @@ def compute_metrics(p, id_to_label, eval_dataset):
     lexlemma = defaultdict(lambda: {"correct": 0, "total": 0})
     for i in range(len(predictions)):
         for j in range(len(predictions[i])):
-            if labels[i][j] == -100 or true_labels[i][j] == "O":
+            if labels[i][j] == -100 or labels[i][j] == 1:
                 continue
             lexlemma[eval_dataset[i]['lexlemma'][j]]["total"] += 1
             if predictions[i][j] == labels[i][j]:
