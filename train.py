@@ -146,7 +146,7 @@ def compute_metrics(p, id_to_label, eval_dataset):
     # add metrics for each label
     # TODO: each token type
     for key in results:
-        if not key.startswith("overall"):
+        if isinstance(results[key], dict) and results[key]["number"] != 0:
             ret[key] = results[key]
 
     return ret
