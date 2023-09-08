@@ -29,9 +29,7 @@ def tokenize_and_align(
         for sent in tqdm(conllu.parse_incr(fin, fields=conllulex)):
             text = sent.metadata['text']
 
-            tokens = []
-            mask = []
-            labels = []
+            tokens, mask, labels, lexlemmas = [], [], [], []
             work = True
 
             smwe_tags = {}
@@ -74,6 +72,7 @@ def tokenize_and_align(
                 # add tag + 'None' for each remaining subword token
                 labels.extend([token['lextag']] + ['None' for _ in range(len(tok) - 1)])
                 mask.extend([1] + [0 for _ in range(len(tok) - 1)])
+                lexlemmas.extend([token['lexlemma']] + ['None' for _ in range(len(tok) - 1)])
                 tokens.extend(tok)
             
             # now add bos/cls and eos/sep tokens

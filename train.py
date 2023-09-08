@@ -34,7 +34,6 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
-
     # potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
     if not freqs:
         freqs = get_ss_frequencies(res)
@@ -52,7 +51,6 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
 
             for tag in all_tags:
                 comb = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
-
 
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
@@ -74,16 +72,17 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                     id_to_label[id] = label[i]
 
     res2 = []
-    lang_code = file.split("/")[-1].split("-")[0] # this should work?
+    lang_code = file.split("/")[-1].split("-")[0]
 
     # convert labels to ids
-    for sent, mask, label in res:
+    for sent, mask, label, lexlemma in res:
         label = [label_to_id[x] for x in label]
         res2.append({
             'input_ids': sent,
             'mask': mask,
             'labels': label,
-            "lang": lang_code
+            'lang': lang_code,
+            'lexlemma': lexlemma
         })
         
     print(f"{len(label_to_id)} labels.")
@@ -128,7 +127,8 @@ def compute_metrics(p, id_to_label, eval_dataset):
             sents.append({
                 'input_ids': eval_dataset[i]['input_ids'],
                 'prediction': true_predictions[i],
-                'label': true_labels[i]
+                'label': true_labels[i],
+                'lexlemma': eval_dataset[i]['lexlemma'],
             })
         
         # dump to file
@@ -144,10 +144,23 @@ def compute_metrics(p, id_to_label, eval_dataset):
     }
     
     # add metrics for each label
-    # TODO: each token type
     for key in results:
         if isinstance(results[key], dict) and results[key]["number"] != 0:
             ret[key] = results[key]
+    
+    # acc for each lexlemma type
+    lexlemma = defaultdict(lambda: {"correct": 0, "total": 0})
+    for i in range(len(predictions)):
+        for j in range(len(predictions[i])):
+            if eval_dataset[i]['lexlemma'][j] == "None":
+                continue
+            lexlemma[eval_dataset[i]['lexlemma'][j]]["total"] += 1
+            if true_predictions[i][j] == true_labels[i][j]:
+                lexlemma[eval_dataset[i]['lexlemma'][j]]["correct"] += 1
+    
+    # calculate acc and put in ret
+    for key in lexlemma:
+        ret[f"{key}.acc"] = lexlemma[key]["correct"] / lexlemma[key]["total"]
 
     return ret
 
