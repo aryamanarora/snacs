@@ -92,7 +92,7 @@ def tokenize_and_align(
 
     # print out some examples
     if verbose:
-        for tokens, mask, labels in res:
+        for tokens, mask, labels, lexlemmas in res:
             for j in range(len(tokens)):
                 print(f"{tokens[j]:<10} {tokenizer.decode(tokens[j]):<15} {mask[j]:<10} {labels[j]:<30}")
             input()
