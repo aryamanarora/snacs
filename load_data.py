@@ -112,7 +112,7 @@ def get_ss_frequencies(res: list):
     inv_freqs = {}
     freqs = defaultdict(lambda: defaultdict(int))
 
-    for tokens, mask, labels in res:
+    for tokens, mask, labels, lexlemmas in res:
 
         #filter out masked tokens from labels
         labels = [l for i, l in enumerate(labels) if mask[i] == 1]
