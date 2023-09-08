@@ -88,7 +88,7 @@ def tokenize_and_align(
             # append to result
             if work:
                 assert len(tokens) == len(mask) == len(labels)
-                res.append([tokens, mask, labels])
+                res.append([tokens, mask, labels, lexlemmas])
 
     # print out some examples
     if verbose:
