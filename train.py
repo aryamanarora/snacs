@@ -15,20 +15,26 @@ from torch.nn import CrossEntropyLoss
 import torch
 import sys
 from collections import defaultdict
+import wandb
+import json
 
 # random seed
 random.seed(42)
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+# make logs dir
+if not os.path.exists("logs"):
+    os.makedirs("logs")
 
+# setup
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 seqeval = evaluate.load("seqeval")
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_id = None, freqs=None):
     """Load data from file and tokenize it."""
     res = tokenize_and_align(file, tokenizer)
 
-
-    #potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
+    # potentially, we could recalculate frequencies with extra languages included too. Not sure if that's a good idea though. For now freqs just on the first target lang
     if not freqs:
         freqs = get_ss_frequencies(res)
         # print(freqs["lt"]["B-p.Cost-Extent"])
@@ -46,22 +52,20 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
             for tag in all_tags:
                 comb = old_freqs[tag_type][tag] + new_freqs[tag_type][tag]
 
-
                 #idk why this would happen but it did >:( now I'm making sure on zero counts get in there
                 if comb > 0:
                     freqs[tag_type][tag] = comb
 
-
-
-
-    #if label-id mapping exists from previous language file, can use that
+    # if label-id mapping exists from previous language file, can use that
     # make label-id mapping if doesn't exist
     if not id_to_label and not label_to_id:
-        label_to_id = {"None": -100}
-        id_to_label = {-100: "None"}
+        label_to_id = defaultdict(lambda: -100)
+        label_to_id["None"] = -100
+        id_to_label = defaultdict(lambda: 'O')
+        id_to_label[-100] = "None"
 
     # convert labels to ids
-    for sent, mask, label in res:
+    for sent, mask, label, lexlemma in res:
         for i in range(len(sent)):
             if mask[i]:
                 if label[i] not in label_to_id:
@@ -70,23 +74,17 @@ def load_data(file: str, tokenizer: AutoTokenizer, id_to_label = None, label_to_
                     id_to_label[id] = label[i]
 
     res2 = []
+    lang_code = file.split("/")[-1].split("-")[0]
 
-    lang_code = file.split("/")[-1].split("-")[0] #this should work?
-
-
-    # add sos and eos, convert labels to ids
-    sos_eos = tokenizer("")["input_ids"]
-    for sent, mask, label in res:
-        if len(sos_eos) == 2:
-            sent = [sos_eos[0]] + sent + [sos_eos[1]]
-            mask = [0] + mask + [0]
-            label = ["None"] + label + ["None"]
+    # convert labels to ids
+    for sent, mask, label, lexlemma in res:
         label = [label_to_id[x] for x in label]
         res2.append({
             'input_ids': sent,
             'mask': mask,
             'labels': label,
-            "lang": lang_code
+            'lang': lang_code,
+            'lexlemma': lexlemma
         })
         
     print(f"{len(label_to_id)} labels.")
@@ -102,11 +100,12 @@ def combine_datasets(file_list: list, train_only=False):
     return
 
 
-def compute_metrics(p, id_to_label):
+def compute_metrics(p, id_to_label, eval_dataset):
     """Compute metrics for evaluation."""
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
 
+    # make human readable
     true_predictions = [
         [id_to_label[p] for (p, l) in zip(prediction, label) if l != -100]
         for prediction, label in zip(predictions, labels)
@@ -117,14 +116,55 @@ def compute_metrics(p, id_to_label):
         for prediction, label in zip(predictions, labels)
     ]
 
-    results = seqeval.compute(predictions=true_predictions, references=true_labels)
-    return {
+    # log predictions to file (same id as wandb run)
+    with open(f"logs/{wandb.run.id}.json", "a") as f:
+
+        # log id_to_label mapping
+        if os.path.getsize(f"logs/{wandb.run.id}.json") > 0:
+            f.write("\n")
+        
+        # collect predictions
+        sents = []
+        for i in range(len(predictions)):
+            sents.append({
+                'input_ids': eval_dataset[i]['input_ids'],
+                'prediction': true_predictions[i],
+                'label': true_labels[i],
+                'lexlemma': eval_dataset[i]['lexlemma'],
+            })
+        
+        # dump to file
+        json.dump(sents, f)
+
+    # compute metrics
+    results = seqeval.compute(predictions=true_predictions, references=true_labels, scheme="IOB2")
+    ret = {
         "precision": results["overall_precision"],
         "recall": results["overall_recall"],
         "f1": results["overall_f1"],
         "accuracy": results["overall_accuracy"],
     }
+    
+    # add metrics for each label
+    for key in results:
+        if isinstance(results[key], dict) and results[key]["number"] != 0:
+            ret[key] = results[key]
+    
+    # acc for each lexlemma type
+    lexlemma = defaultdict(lambda: {"correct": 0, "total": 0})
+    for i in range(len(predictions)):
+        for j in range(len(predictions[i])):
+            if labels[i][j] == -100 or labels[i][j] == 1:
+                continue
+            lexlemma[eval_dataset[i]['lexlemma'][j]]["total"] += 1
+            if predictions[i][j] == labels[i][j]:
+                lexlemma[eval_dataset[i]['lexlemma'][j]]["correct"] += 1
+    
+    # calculate acc and put in ret
+    for key in lexlemma:
+        ret[f"{key}.acc"] = lexlemma[key]["correct"] / lexlemma[key]["total"]
 
+    return ret
 
 # custom trainer which is used for custom weighted loss function
 class MyTrainer(Trainer):
@@ -162,8 +202,8 @@ class MyTrainer(Trainer):
 
         weights2 = [float(w) for w in weights2]
 
-        weights = torch.tensor(weights).to("cuda")
-        weights2 = torch.tensor(weights2).to("cuda")
+        weights = torch.tensor(weights).to(DEVICE)
+        weights2 = torch.tensor(weights2).to(DEVICE)
 
 
         labels = labels.view(-1) #batch_size * sequence length
@@ -188,14 +228,19 @@ def train(
     freeze: bool,
     test_file: str,
     extra_file: str,
-    multilingual: bool):
+    multilingual: bool,
+    loss_fn: str
+):
     """Train model."""
+
+    # update summary for wandb
+    command_line_args = locals()
 
     # load data
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     data, label_to_id, id_to_label, freqs = load_data(f"data/{file}", tokenizer)
 
-    #could alter this to take a list of extra files so that it could be as many as you want.
+    # could alter this to take a list of extra files so that it could be as many as you want.
     if extra_file:
         #for ex_file in extra_file: do this iteratively, add each extra file onto eachother, take the new label_to_id etc
         extra_data, label_to_id, id_to_label, freqs = load_data(f"data/{extra_file}", tokenizer, label_to_id=label_to_id, id_to_label=id_to_label, freqs=freqs) #use the existing id_to_label and just add to them
@@ -265,17 +310,26 @@ def train(
         train_dataset = data
         eval_dataset = test_data
 
-    trainer = MyTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=eval_dataset,
-        tokenizer=tokenizer,
-        data_collator=data_collator,
-        compute_metrics=lambda x: compute_metrics(x, id_to_label)
-    )
+    # set up trainer
+    trainer_args = {
+        "model": model,
+        "args": training_args,
+        "train_dataset": train_dataset,
+        "eval_dataset": eval_dataset,
+        "tokenizer": tokenizer,
+        "data_collator": data_collator,
+        "compute_metrics": lambda x: compute_metrics(x, id_to_label, eval_dataset),
+    }
+    trainer = None
+    if loss_fn == "weighted":
+        trainer = MyTrainer(**trainer_args)
+        trainer.add_freqs(freqs)
+    else:
+        trainer = Trainer(**trainer_args)
 
-    trainer.add_freqs(freqs)
+    # update
+    run = wandb.init(project="huggingface")
+    run.summary.update(command_line_args)
 
     # train
     trainer.train()
@@ -284,7 +338,8 @@ def train(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
-    parser.add_argument("--file", type=str, default="en-lp.conllulex")
+    parser.add_argument("--loss_fn", type=str, default=None)
+    parser.add_argument("--file", type=str, default="en-test.conllulex")
     parser.add_argument("--learning_rate", type=float, default=2e-5)
     parser.add_argument("--batch_size", type=int, default=16)
     parser.add_argument("--epochs", type=int, default=10)
